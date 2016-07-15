@@ -14,10 +14,15 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+            <android.support.v4.view.ViewPager
+                android:id="@+id/classtable_class_page_viewpager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+            <!--
             <com.ylq.library.ClassBoxViewPM
                 android:id="@+id/classtable_activity_main_container_pm"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+                android:layout_height="match_parent"/>-->
             <android.support.design.widget.FloatingActionButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

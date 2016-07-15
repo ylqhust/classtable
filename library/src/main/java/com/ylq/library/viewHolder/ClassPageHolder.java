@@ -2,14 +2,14 @@ package com.ylq.library.viewHolder;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.view.MotionEvent;
+import android.support.v4.view.ViewPager;
+import android.view.DragEvent;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.ylq.library.ClassBoxViewPM;
 import com.ylq.library.R;
+import com.ylq.library.adapter.ClassViewPagerAdapter;
 import com.ylq.library.adapter.SelectWeekAdapter;
 import com.ylq.library.model.AllClasses;
 import com.ylq.library.model.Common;
@@ -26,7 +26,8 @@ public class ClassPageHolder extends ClasstableBaseHolder implements View.OnClic
     private RelativeLayout mRelaWeek;//选择当前周的按钮
     private TextView mTVCurrentWeek;//显示当前周的TextView
     private RelativeLayout mRelaSetting;//设置按钮
-    private ClassBoxViewPM mClassbox;//放具体课程的view
+//    private ClassBoxViewPM mClassbox;//放具体课程的view
+    private ViewPager mViewPager;
     private AllClasses mAllClasses;
     private int mCurrentWeek;//当前周
     private int mSelectWeek;
@@ -37,16 +38,25 @@ public class ClassPageHolder extends ClasstableBaseHolder implements View.OnClic
         mAllClasses.addFiveEmptyWeek();
         mCurrentWeek = getCurrentWeek();
         mSelectWeek = mCurrentWeek;
-        setPageData(mCurrentWeek);
-        mClassbox.setOnTouchListener(new View.OnTouchListener() {
+        mViewPager.setAdapter(new ClassViewPagerAdapter(getContext(),allClasses));
+        mViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                int x = (int) event.getX();
-                int y = (int) event.getY();
-                System.out.println("x:"+x+" y:"+y);
-                return false;
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                setPageData(position+1);
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
             }
         });
+        setPageData(mCurrentWeek);
+        mViewPager.setCurrentItem(mCurrentWeek-1,true);
     }
 
     private void setPageData(int weekth) {
@@ -58,7 +68,7 @@ public class ClassPageHolder extends ClasstableBaseHolder implements View.OnClic
             useSummer();
         else
             useWinter();
-        mClassbox.setData(oneWeekClasses);
+    //    mClassbox.setData(oneWeekClasses);
         setMonthAndDateText(oneWeekClasses);
         if(weekth==mCurrentWeek){
             mTVCurrentWeek.setText("第"+weekth+"周");
@@ -97,7 +107,8 @@ public class ClassPageHolder extends ClasstableBaseHolder implements View.OnClic
         this.mRelaBack = findR(R.id.classtable_toolbar_rela_back);
         this.mRelaWeek = findR(R.id.classtable_toolbar_week_rela);
         this.mRelaSetting = findR(R.id.classtable_toolbar_setting_rela);
-        this.mClassbox = (ClassBoxViewPM) findViewById(R.id.classtable_activity_main_container_pm);
+  //      this.mClassbox = (ClassBoxViewPM) findViewById(R.id.classtable_activity_main_container_pm);
+        this.mViewPager = (ViewPager) findViewById(R.id.classtable_class_page_viewpager);
         this.mTVCurrentWeek = findT(R.id.classtable_toolbar_tv);
     }
 
@@ -112,6 +123,7 @@ public class ClassPageHolder extends ClasstableBaseHolder implements View.OnClic
                 @Override
                 public void selectWeek(int weekIndex) {
                     setPageData(weekIndex);
+                    mViewPager.setCurrentItem(weekIndex-1,true);
                 }
             }));
         }
@@ -125,7 +137,7 @@ public class ClassPageHolder extends ClasstableBaseHolder implements View.OnClic
     @Override
     public void unGurad() {
         ClickGuard.unGuard(mRelaBack,mRelaWeek,mRelaSetting);
-        mClassbox.finish();
+  //      mClassbox.finish();
     }
 
 
