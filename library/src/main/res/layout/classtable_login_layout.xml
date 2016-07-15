@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray_f4f4f4"
+    android:orientation="vertical">
+
+
+        <EditText
+            android:id="@+id/classtable_login_layout_et_account"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/corner_5dp_solid_ffffff_stroke_c9c9c9"
+            android:cursorVisible="true"
+            android:gravity="center"
+            android:hint="请输入账号"
+            android:paddingBottom="16dp"
+            android:paddingTop="16dp"
+            android:textColor="@color/gray_565656"
+            android:textColorHint="@color/gray_b5b5b5"
+            android:textCursorDrawable="@null"
+            android:textSize="16sp"/>
+
+        <EditText
+            android:id="@+id/classtable_login_layout_et_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/corner_5dp_solid_ffffff_stroke_c9c9c9"
+            android:cursorVisible="true"
+            android:gravity="center"
+            android:hint="请输入密码"
+            android:inputType="textPassword"
+            android:paddingBottom="16dp"
+            android:paddingTop="16dp"
+            android:textColor="@color/gray_565656"
+            android:textColorHint="@color/gray_b5b5b5"
+            android:textCursorDrawable="@null"
+            android:textSize="16sp"/>
+
+            <TextView
+                android:id="@+id/classtable_login_layout_tv_login"
+                android:layout_width="150dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:clickable="true"
+                android:textSize="20sp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/selector_common_corner_5dp_normal_solid_00cd90_pressed_solid_009f5c"
+                android:text="@string/classtable_login"
+                android:textColor="@color/gray_ffffff"
+                />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingBottom="8dp"
+        android:paddingTop="16dp"
+        android:text="我们确保您的账号安全，请放心使用"
+        android:textColor="@color/gray_929292"
+        android:textSize="12sp"/>
+
+</LinearLayout>

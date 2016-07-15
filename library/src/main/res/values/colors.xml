@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="ccc_view_color">#e1e1e1</color>
+    <color name="classtable_theme_color">#00cd90</color>
+    <color name="classtable_line_color">#e1e1e1</color>
+    <color name="white">#ffffff</color>
+    <color name="gray">#9e9e9e</color>
+    <color name="gray_f4f4f4">#f4f4f4</color>
+    <color name="gray_565656">#565656</color>
+    <color name="gray_b5b5b5">#b5b5b5</color>
+    <color name="gray_ffffff">#ffffff</color>
+    <color name="gray_929292">#929292</color>
+    <color name="green_00cd90">#00cd90</color>
+    <color name="ababab">#ababab</color>
+    <color name="bababa">#bababa</color>
+    <color name="c1c1c1">#c1c1c1</color>
+    <string-array name="ClassColorArray">
+        <item>#ff5177</item>
+        <item>#8124aa</item>
+        <item>#5677fc</item>
+        <item>#009688</item>
+        <item>#00bcd4</item>
+        <item>#03a9f4</item>
+        <item>#42bd41</item>
+        <item>#cddc39</item>
+        <item>#f57c00</item>
+        <item>#9e9e9e</item>
+    </string-array>
+</resources>

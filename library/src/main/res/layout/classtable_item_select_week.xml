@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/item_select_week_textview"
+    android:text="第3周"
+    android:textColor="@color/white"
+    android:background="@color/classtable_theme_color"
+    android:gravity="center"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="12dp"
+    android:clickable="true"
+    android:textSize="18sp"
+    />

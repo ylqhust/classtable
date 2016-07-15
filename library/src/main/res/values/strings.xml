@@ -1,0 +1,32 @@
+<resources>
+    <string name="app_name">ClassTable</string>
+    <string name="classtable_toolbar_string_setting">设置</string>
+    <string name="classtable_monday">周一</string>
+    <string name="classtable_tur">周二</string>
+    <string name="classtable_wen">周三</string>
+    <string name="classtable_th">周四</string>
+    <string name="classtable_friday">周五</string>
+    <string name="classtable_sat">周六</string>
+    <string name="classtable_sun">周日</string>
+    <string name="HUBLogin">HUB登陆</string>
+    <string name="classtable_login">登陆</string>
+    <string name="ing_login_hub">正在登陆hub...</string>
+    <string name="wrong_account_or_password">用户名或密码错误，请重新输入</string>
+    <string name="ing_parser_class">正在导入课表</string>
+
+    <string-array name="ing_login_hub">
+        <item>正在登陆HUB.</item>
+        <item>正在登陆HUB..</item>
+        <item>正在登陆HUB...</item>
+        <item>正在登陆HUB....</item>
+        <item>正在登陆HUB.....</item>
+    </string-array>
+
+    <string-array name="ing_parser_class">
+        <item>正在导入课表.</item>
+        <item>正在导入课表..</item>
+        <item>正在导入课表...</item>
+        <item>正在导入课表....</item>
+        <item>正在导入课表.....</item>
+    </string-array>
+</resources>

@@ -1,0 +1,24 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="classtable_unit_width">60dp</dimen>
+    <dimen name="classtable_unit_height">70dp</dimen>
+    <dimen name="classtable_long_unit_width">100dp</dimen>
+    <!--    <dimen name="classtable_classes_container_width">460dp</dimen>60*6+100-->-->
+    <!--  <dimen name="classtable_classes_container_width">match_parent</dimen>-->
+    <!--    <dimen name="classtable_classes_container_height">855dp</dimen>-(70+1)*12-1-->
+    <!--<dimen name="classtable_classes_container_height">match_parent</dimen>-->
+    <dimen name="ccc_view_height">1dp</dimen>
+    <dimen name="classtable_unit_corner_radius">4dp</dimen>
+    <dimen name="classtable_text_size">4sp</dimen>
+    <dimen name="timeIndicator_height">15dp</dimen>
+    <dimen name="classtable_arrows_left_height">40dp</dimen>
+    <dimen name="classtable_arrows_left_width">20dp</dimen>
+    <dimen name="classtable_left_time_width">40dp</dimen>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="classtable_day_week_height">40dp</dimen>
+    <dimen name="classtable_class_page_toolbar_height">56dp</dimen>
+    <dimen name="classtable_dialog_select_week_listview_width">160dp</dimen>
+    <dimen name="classtable_dialog_select_week_listview_height">250dp</dimen>
+</resources>
