@@ -51,7 +51,6 @@ public class TimeIndicator extends View {
     @Override
     protected void onMeasure(int widthMeasureSpec,int heightMeasureSpec){
         super.onMeasure(widthMeasureSpec,heightMeasureSpec);
-        System.out.println("onMeasure\n"+getMeasuredHeight()+" "+getMeasuredWidth());
         initPath();
         initPaint();
     }

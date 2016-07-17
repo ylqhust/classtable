@@ -98,8 +98,11 @@ public class AllClasses {
         mAllClasses.add(mAllClasses.get(mAllClasses.size()-1).getEmptyWeek());
         mAllClasses.add(mAllClasses.get(mAllClasses.size()-1).getEmptyWeek());
     }
-
     public int getAllWeekCount() {
         return mAllClasses.size();
+    }
+
+    public List<OneWeekClasses> getData(){
+        return mAllClasses;
     }
 }

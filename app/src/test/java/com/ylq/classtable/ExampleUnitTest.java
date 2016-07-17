@@ -6,6 +6,9 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.junit.Test;
 
 import java.util.HashMap;
@@ -17,13 +20,19 @@ import static org.junit.Assert.*;
  */
 public class ExampleUnitTest {
 
+    private byte[][] area = new byte[12][7];
+
     @Test
-    public void test() {
-        HashMap<String,Integer> map = new HashMap<>();
-        String s = new String("aaa");
-        String s2 = new String("aaa");
-        map.put(s,1);
-        System.out.println(map.containsKey(s2));
+    public void test() throws JSONException {
+        JSONArray array = new JSONArray();
+        JSONObject object = new JSONObject();
+        object.put("1", "x");
+        JSONObject object1 = new JSONObject();
+        object1.put("2", "xx");
+        JSONObject object2 = new JSONObject();
+        object2.put("3", "xxx");
+        array.put(object).put(object1).put(object2);
+        System.out.println(array.toString());
     }
 
 }

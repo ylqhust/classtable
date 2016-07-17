@@ -1,171 +1,99 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal" android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
     <RelativeLayout
         android:layout_width="@dimen/classtable_left_time_width"
-        android:layout_height="wrap_content"
-        android:background="@color/classtable_theme_color"
-        android:padding="5dp">
-    <TextView
-        android:id="@+id/classtable_day_week_tv_month"
-        android:layout_width="wrap_content"
         android:layout_height="@dimen/classtable_day_week_height"
-        android:layout_centerHorizontal="true"
-        android:textSize="14sp"/>
+        android:background="@color/left_time_background_color">
+
+        <TextView
+            android:id="@+id/classtable_day_week_tv_month"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="7"
+            android:textColor="@color/left_time_top_text_color"
+            android:textSize="20sp" />
     </RelativeLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/classtable_theme_color"
+        android:background="@color/left_time_background_color"
         android:orientation="horizontal">
-        <LinearLayout
 
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:layout_weight="1">
+        <LinearLayout style="@style/day_week_linear_style">
+
             <TextView
                 android:id="@+id/classtable_day_week_tv_day1"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:text="7.28"
-                android:textColor="@color/white"
-                android:gravity="center"/>
+                style="@style/day_week_text_style" />
+
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:text="@string/classtable_monday"
-                android:textColor="@color/white"
-                android:gravity="center"/>
+                style="@style/day_week_text_style"
+                android:text="@string/classtable_monday" />
         </LinearLayout>
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:layout_weight="1">
+
+        <LinearLayout style="@style/day_week_linear_style">
+
             <TextView
                 android:id="@+id/classtable_day_week_tv_day2"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:text="7.29"
-                android:textColor="@color/white"
-                android:gravity="center"/>
+                style="@style/day_week_text_style" />
+
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:text="@string/classtable_tur"
-                android:textColor="@color/white"
-                android:gravity="center"/>
+                style="@style/day_week_text_style"
+                android:text="@string/classtable_tur" />
         </LinearLayout>
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:layout_weight="1">
+
+        <LinearLayout style="@style/day_week_linear_style">
             <TextView
                 android:id="@+id/classtable_day_week_tv_day3"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:text="7.30"
-                android:textColor="@color/white"
-                android:gravity="center"/>
+                style="@style/day_week_text_style" />
+
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:text="@string/classtable_wen"
-                android:textColor="@color/white"
-                android:gravity="center"/>
+                style="@style/day_week_text_style"
+                android:text="@string/classtable_wen" />
         </LinearLayout>
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:layout_weight="1">
+
+        <LinearLayout style="@style/day_week_linear_style">
             <TextView
                 android:id="@+id/classtable_day_week_tv_day4"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:text="7.31"
-                android:textColor="@color/white"
-                android:gravity="center"/>
+                style="@style/day_week_text_style" />
+
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:text="@string/classtable_th"
-                android:textColor="@color/white"
-                android:gravity="center"/>
+                style="@style/day_week_text_style"
+                android:text="@string/classtable_th" />
         </LinearLayout>
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:layout_weight="1">
+
+        <LinearLayout style="@style/day_week_linear_style">
             <TextView
                 android:id="@+id/classtable_day_week_tv_day5"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:text="8.1"
-                android:textColor="@color/white"
-                android:gravity="center"/>
+                style="@style/day_week_text_style" />
+
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:text="@string/classtable_friday"
-                android:textColor="@color/white"
-                android:gravity="center"/>
+                style="@style/day_week_text_style"
+                android:text="@string/classtable_friday" />
         </LinearLayout>
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:layout_weight="1">
+
+        <LinearLayout style="@style/day_week_linear_style">
             <TextView
                 android:id="@+id/classtable_day_week_tv_day6"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:text="8.2"
-                android:textColor="@color/white"
-                android:gravity="center"/>
+                style="@style/day_week_text_style" />
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:text="@string/classtable_sat"
-                android:textColor="@color/white"
-                android:gravity="center"/>
+                style="@style/day_week_text_style"
+                android:text="@string/classtable_sat" />
         </LinearLayout>
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:layout_weight="1">
+
+        <LinearLayout style="@style/day_week_linear_style">
             <TextView
                 android:id="@+id/classtable_day_week_tv_day7"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:text="8.3"
-                android:textColor="@color/white"
-                android:gravity="center"/>
+                style="@style/day_week_text_style" />
+
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:text="@string/classtable_sun"
-                android:textColor="@color/white"
-                android:gravity="center"/>
+                style="@style/day_week_text_style"
+                android:text="@string/classtable_sun" />
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

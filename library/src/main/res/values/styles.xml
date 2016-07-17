@@ -15,4 +15,42 @@
         <item name="android:layout_marginTop">@dimen/classtable_unit_height</item>
     </style>
 
+    <style name="left_time_top_text_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/left_time_top_text_color</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="left_time_view_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:background">@color/left_time_view_color</item>
+    </style>
+
+    <style name="left_time_linear_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">55dp</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="day_week_text_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:textColor">@color/left_time_top_text_color</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">10sp</item>
+    </style>
+
+
+    <style name="day_week_linear_style">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+
 </resources>

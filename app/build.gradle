@@ -24,4 +24,5 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:22.+'
     compile project(':library')
+    testCompile files('libs/json.jar')
 }

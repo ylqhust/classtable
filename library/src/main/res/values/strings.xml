@@ -13,6 +13,11 @@
     <string name="ing_login_hub">正在登陆hub...</string>
     <string name="wrong_account_or_password">用户名或密码错误，请重新输入</string>
     <string name="ing_parser_class">正在导入课表</string>
+    <string name="classtable_classtable">课程表</string>
+    <string name="classtable_show_all_classes">显示全部课程</string>
+    <string name="classtable_setting_page_content_notification">明日课程通知</string>
+    <string name="classtable_setting_page_content_notification_text">开启后会在每晚9点30发送通知提醒明天所要上的的课程</string>
+    <string name="classtable_notification_title">明天的课程</string>
 
     <string-array name="ing_login_hub">
         <item>正在登陆HUB.</item>

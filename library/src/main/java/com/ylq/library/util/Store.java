@@ -4,10 +4,13 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.ylq.library.model.AllClasses;
+import com.ylq.library.model.OneWeekClasses;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.List;
 
 /**
  * Created by apple on 16/7/14.
@@ -16,6 +19,8 @@ public class Store {
     public static final String SH_NAME = "hust_pass_classtable";
     public static final String NAME_SAVE_SUCCESS = "save_success";
     private static final String SAVED_CLASS_TABLE = "saved_class_table";
+    private static final String SHOW_ALL_CLASSES = "show_all_classes";
+    private static final String NOTIFICATION_TOMORROW = "notification_tomorrow";
 
     /**
      *
@@ -66,5 +71,54 @@ public class Store {
             e.printStackTrace();
             return null;
         }
+    }
+
+    /**
+     * 获取明天的课程
+     * @param context
+     * @return
+     */
+    public static String getTomorrowClasses(Context context){
+        if(!isLocalHaveData(context))
+            return null;
+        AllClasses allClasses = getLocalData(context);
+        if(allClasses==null)
+            return null;
+        List<OneWeekClasses> data = allClasses.getData();
+        if(data==null)
+            return null;
+        for(OneWeekClasses oneWeekClasses:data){
+            String s = oneWeekClasses.getTomorrowClasses();
+            if(s!=null)
+                return s;
+        }
+        return null;
+    }
+
+    private static boolean getBoolean(String key,Context context,boolean defValue){
+        SharedPreferences sharedPreferences = context.getSharedPreferences(SH_NAME,Context.MODE_PRIVATE);
+        return sharedPreferences.getBoolean(key,defValue);
+    }
+
+    public static boolean isShowAll(Context context){
+        return getBoolean(SHOW_ALL_CLASSES,context,false);
+    }
+
+    public static boolean isNotification(Context context){
+        return getBoolean(NOTIFICATION_TOMORROW,context,true);
+    }
+    private static void saveSetting(String key,Context context,boolean value){
+        SharedPreferences sharedPreferences = context.getSharedPreferences(SH_NAME,Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putBoolean(key,value);
+        editor.commit();
+    }
+
+    public static void saveShowAllSettig(Context context,boolean value){
+        saveSetting(SHOW_ALL_CLASSES,context,value);
+    }
+
+    public static void saveNotificationSetting(Context context,boolean value){
+       saveSetting(NOTIFICATION_TOMORROW,context,value);
     }
 }

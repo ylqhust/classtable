@@ -7,7 +7,6 @@
         android:id="@+id/classtable_toolbar_rela_back"
         android:layout_width="40dp"
         android:padding="8dp"
-        android:background="@drawable/classtable_selector"
         android:onClick="true"
         android:layout_height="match_parent">
     <ImageView
@@ -19,7 +18,6 @@
     <RelativeLayout
         android:id="@+id/classtable_toolbar_week_rela"
         android:clickable="true"
-        android:background="@drawable/classtable_selector"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_centerInParent="true">
@@ -29,19 +27,11 @@
         android:layout_height="wrap_content"
         android:text="第1周"
         android:textColor="@color/white"
-        android:textSize="22sp"
+        android:textSize="18sp"
         android:layout_centerInParent="true"/>
-    <ImageView
-        android:layout_width="20dp"
-        android:layout_height="10dp"
-        android:src="@mipmap/classtable_arrows_down"
-        android:layout_toRightOf="@id/classtable_toolbar_tv"
-        android:layout_centerVertical="true"
-        />
     </RelativeLayout>
     <RelativeLayout
         android:id="@+id/classtable_toolbar_setting_rela"
-        android:background="@drawable/classtable_selector"
         android:clickable="true"
         android:layout_width="60dp"
         android:layout_alignParentRight="true"

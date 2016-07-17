@@ -13,6 +13,8 @@ public class Config {
     public static final int QUERY_END_MONTH = Calendar.JANUARY;
     public static final int QUERY_START_DAY = 29;
     public static final int QUERY_END_DAY = 31;
+    public static final int NOTIFICATION_HOUR = 21;
+    public static final int NOTIFICATION_MINUTE = 30;
 
     public static long getStartTimeInMillis(){
         Calendar calendar = Calendar.getInstance(Locale.CHINA);

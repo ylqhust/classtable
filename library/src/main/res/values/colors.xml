@@ -17,6 +17,13 @@
     <color name="ababab">#ababab</color>
     <color name="bababa">#bababa</color>
     <color name="c1c1c1">#c1c1c1</color>
+    <color name="classtable_setting_page_content_background">#ffd7d7d7</color>
+    <color name="classtable_setting_page_content_rela_background">#fff3f3f3</color>
+    <color name="classtable_setting_page_content_rela_text_color">#37474f</color>
+    <color name="classtable_classes_container_pm_background">#d5f9ff</color>
+    <color name="left_time_top_text_color">#4282c4</color>
+    <color name="left_time_view_color">#b4dbed</color>
+    <color name="left_time_background_color">#d8f8ff</color>
     <string-array name="ClassColorArray">
         <item>#ff5177</item>
         <item>#8124aa</item>

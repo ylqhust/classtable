@@ -68,5 +68,16 @@ public class OneDayClasses {
             oneDayClasses.add(ClassUnit.parserJSONObject(array.getJSONObject(i)));
         return oneDayClasses;
     }
+
+    public String getClasses(int month,int day){
+        if(month!=mMonth || day!=mDay)
+            return null;
+        StringBuilder sb = new StringBuilder();
+        int i;
+        for(i=0;i<mClassUnit.size()-1;i++)
+            sb.append(mClassUnit.get(i).mClassName+"|");
+        sb.append(mClassUnit.get(i).mClassName);
+        return sb.toString();
+    }
 }
 

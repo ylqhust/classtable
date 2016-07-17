@@ -56,6 +56,7 @@ public class SelectWeekViewHolder extends ZeroAlphaDialogHolder {
                     mCallback.selectWeek(weekIndex);
             }
         }, LayoutInflater.from(getContext())));
+        mListView.setSelection(mSelectWeek-1);
     }
 
     @Override

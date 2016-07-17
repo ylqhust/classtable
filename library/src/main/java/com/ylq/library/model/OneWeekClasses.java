@@ -143,6 +143,22 @@ public class OneWeekClasses {
         return false;
     }
 
+    public String getTomorrowClasses(){
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(System.currentTimeMillis()+24*60*60*1000);
+        int month = calendar.get(Calendar.MONTH)+1;
+        int day = calendar.get(Calendar.DATE);
+        for(int i=0;i<7;i++)
+            if(mMonth[i]==month&&mDay[i]==day){
+                for(int j=0;j<mOneDayClasses.size();j++){
+                    String s = mOneDayClasses.get(i).getClasses(month,day);
+                    if(s!=null)
+                        return s;
+                }
+            }
+        return null;
+    }
+
     public OneWeekClasses getEmptyWeek(){
         OneWeekClasses oneWeekClasses = new OneWeekClasses();
         oneWeekClasses.mSeason = mSeason;
