@@ -4,7 +4,7 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="ccc_view_color">#e1e1e1</color>
-    <color name="classtable_theme_color">#00cd90</color>
+    <color name="classtable_theme_color">#d000cd90</color>
     <color name="classtable_line_color">#e1e1e1</color>
     <color name="white">#ffffff</color>
     <color name="gray">#9e9e9e</color>
@@ -24,16 +24,20 @@
     <color name="left_time_top_text_color">#4282c4</color>
     <color name="left_time_view_color">#b4dbed</color>
     <color name="left_time_background_color">#d8f8ff</color>
+    <color name="day_week_background_color">#cdf5ff</color>
+    <color name="alpha_white">#00ffffff</color>
+    <color name="select_week_item_text_color">#3b95e8</color>
+    <color name="not_the_week_text_color">#f58046</color>
     <string-array name="ClassColorArray">
-        <item>#ff5177</item>
-        <item>#8124aa</item>
-        <item>#5677fc</item>
-        <item>#009688</item>
-        <item>#00bcd4</item>
-        <item>#03a9f4</item>
-        <item>#42bd41</item>
-        <item>#cddc39</item>
-        <item>#f57c00</item>
-        <item>#9e9e9e</item>
+        <item>#c08fd156</item>
+        <item>#c06ec1a7</item>
+        <item>#c0d7c587</item>
+        <item>#c07fcfce</item>
+        <item>#c08fb8ce</item>
+        <item>#c07fa8e6</item>
+        <item>#c0e7c667</item>
+        <item>#c057c0de</item>
+        <item>#c0e096b1</item>
+        <item>#c0bfa896</item>
     </string-array>
 </resources>

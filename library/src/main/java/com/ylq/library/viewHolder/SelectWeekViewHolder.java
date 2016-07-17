@@ -15,6 +15,7 @@ import com.ylq.library.R;
 import com.ylq.library.adapter.SelectWeekAdapter;
 import com.ylq.library.util.ClickGuard;
 import com.ylq.library.util.DimenUtils;
+import com.ylq.library.widget.SelectWeekLayout;
 
 /**
  * Created by apple on 16/7/15.
@@ -23,10 +24,10 @@ public class SelectWeekViewHolder extends ZeroAlphaDialogHolder {
 
     private LinearLayout mLinearBackGround;
     private ListView mListView;
-    private CardView mCardView;
     private int mCurrentWeek;
     private String[] mListViewString;
     private SelectWeekAdapter.SelectWeekCallback mCallback;
+    private SelectWeekLayout mSelecLayout;
     private int mSelectWeek;
 
     public SelectWeekViewHolder(Context context, int weekCount, int currentWeek,int selectWeek, SelectWeekAdapter.SelectWeekCallback callback) {
@@ -48,14 +49,15 @@ public class SelectWeekViewHolder extends ZeroAlphaDialogHolder {
     }
 
     private void init(){
-        mListView.setAdapter(new SelectWeekAdapter(mListViewString, mCurrentWeek, new SelectWeekAdapter.SelectWeekCallback() {
+        mListView.setAdapter(new SelectWeekAdapter(mListViewString, mSelectWeek, new SelectWeekAdapter.SelectWeekCallback() {
             @Override
             public void selectWeek(int weekIndex) {
                 back();
                 if(mCallback!=null)
                     mCallback.selectWeek(weekIndex);
             }
-        }, LayoutInflater.from(getContext())));
+        }, getContext()));
+        mListView.setDivider(null);
         mListView.setSelection(mSelectWeek-1);
     }
 
@@ -63,7 +65,7 @@ public class SelectWeekViewHolder extends ZeroAlphaDialogHolder {
     public void initView() {
         mLinearBackGround = findL(R.id.classtable_dialog_select_week_linear);
         mListView = (ListView) findViewById(R.id.classtable_dialog_select_week_listview);
-        mCardView = (CardView) findViewById(R.id.classtable_dialog_select_week_cardview);
+        mSelecLayout = (SelectWeekLayout) findViewById(R.id.classtable_select_week_seleclayout);
     }
 
     @Override
@@ -89,14 +91,14 @@ public class SelectWeekViewHolder extends ZeroAlphaDialogHolder {
     @Override
     public void in(long duration, final AnimationEndCallBack callBack) {
         int cardViewHeight = DimenUtils.getDimensionPixelSize(getContext(), R.dimen.classtable_dialog_select_week_listview_height);
-        final ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) mCardView.getLayoutParams();
+        final ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) mSelecLayout.getLayoutParams();
         ValueAnimator valueAnimator = ValueAnimator.ofInt(-cardViewHeight,0);
         valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
                 int currentTopMargin = (int) animation.getAnimatedValue();
                 marginLayoutParams.topMargin = currentTopMargin;
-                mCardView.setLayoutParams(marginLayoutParams);
+                mSelecLayout.setLayoutParams(marginLayoutParams);
             }
         });
         valueAnimator.addListener(new Animator.AnimatorListener() {
@@ -130,14 +132,14 @@ public class SelectWeekViewHolder extends ZeroAlphaDialogHolder {
     public void leave(long duration, final AnimationEndCallBack callBack) {
         int toolbarHeight = DimenUtils.getDimensionPixelSize(getContext(), R.dimen.classtable_class_page_toolbar_height);
         int cardViewHeight = DimenUtils.getDimensionPixelSize(getContext(), R.dimen.classtable_dialog_select_week_listview_height);
-        final ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) mCardView.getLayoutParams();
+        final ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) mSelecLayout.getLayoutParams();
         ValueAnimator valueAnimator = ValueAnimator.ofInt(0,-cardViewHeight);
         valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
                 int currentTopMargin = (int) animation.getAnimatedValue();
                 marginLayoutParams.topMargin = currentTopMargin;
-                mCardView.setLayoutParams(marginLayoutParams);
+                mSelecLayout.setLayoutParams(marginLayoutParams);
             }
         });
         valueAnimator.addListener(new Animator.AnimatorListener() {

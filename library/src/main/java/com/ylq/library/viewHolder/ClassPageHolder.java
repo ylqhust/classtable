@@ -56,10 +56,18 @@ public class ClassPageHolder extends ClasstableBaseHolder implements View.OnClic
 
             }
         });
+
         setPageData(mCurrentWeek);
         mViewPager.setCurrentItem(mCurrentWeek-1,true);
     }
 
+    @Override
+    public void show(long duration,AnimationEndCallBack callBack){
+        super.show(duration,callBack);
+        if(mAdapter!=null && mAdapter instanceof ClassViewPagerAdapter2)
+            ((ClassViewPagerAdapter2)mAdapter).checkIfShowAll();
+
+    }
     private void setPageData(int weekth) {
         mSelectWeek = weekth;
         OneWeekClasses oneWeekClasses = mAllClasses.getOneWeek(weekth);
@@ -75,7 +83,7 @@ public class ClassPageHolder extends ClasstableBaseHolder implements View.OnClic
             mTVCurrentWeek.setTextColor(Color.WHITE);
         }else {
             mTVCurrentWeek.setText("第"+weekth+"周(非本周)");
-            mTVCurrentWeek.setTextColor(Color.RED);
+            mTVCurrentWeek.setTextColor(getContext().getResources().getColor(R.color.not_the_week_text_color));
         }
     }
 
@@ -144,7 +152,8 @@ public class ClassPageHolder extends ClasstableBaseHolder implements View.OnClic
     @Override
     public void unGurad() {
         ClickGuard.unGuard(mRelaBack,mRelaWeek,mRelaSetting);
-        ((ClassViewPagerAdapter2)mAdapter).finish();
+        if(mAdapter!=null && mAdapter instanceof ClassViewPagerAdapter2)
+            ((ClassViewPagerAdapter2)mAdapter).finish();
     }
 
 

@@ -1,5 +1,6 @@
 package com.ylq.library.adapter;
 
+import android.content.Context;
 import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
@@ -15,16 +16,18 @@ import com.ylq.library.R;
  */
 public class SelectWeekAdapter extends BaseAdapter {
     private String[] mListViewData;
-    private int mCurrentWeek;
+    private int mSelectWeek;
     private SelectWeekCallback mCallBack;
+    private Context mContext;
     private LayoutInflater mInflater;
 
-    public SelectWeekAdapter(@NonNull String[] listViewData, int currentWeek,
-                             SelectWeekCallback callback,@NonNull LayoutInflater inflater){
+    public SelectWeekAdapter(@NonNull String[] listViewData, int selectWeek,
+                             SelectWeekCallback callback, Context context) {
         mListViewData = listViewData;
-        mCurrentWeek = currentWeek;
+        mSelectWeek = selectWeek;
         mCallBack = callback;
-        mInflater = inflater;
+        mContext = context;
+        mInflater = LayoutInflater.from(context);
     }
 
 
@@ -45,21 +48,23 @@ public class SelectWeekAdapter extends BaseAdapter {
 
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
-        TextView textView = (TextView) mInflater.inflate(R.layout.classtable_item_select_week,null);
+        TextView textView = (TextView) mInflater.inflate(R.layout.classtable_item_select_week, null);
         textView.setText(mListViewData[position]);
-        if((position+1)==mCurrentWeek)
-            textView.setTextColor(Color.BLACK);
+        if ((position + 1) == mSelectWeek) {
+            textView.setBackground(mContext.getResources().getDrawable(R.drawable.select_week_item_select_shape));
+            textView.setTextColor(Color.WHITE);
+        }
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(mCallBack!=null)
-                    mCallBack.selectWeek(position+1);
+                if (mCallBack != null)
+                    mCallBack.selectWeek(position + 1);
             }
         });
         return textView;
     }
 
-    public static interface SelectWeekCallback{
+    public static interface SelectWeekCallback {
         void selectWeek(int weekIndex);
     }
 }

@@ -4,5 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/material_blue_grey_800"
     tools:context="com.ylq.classtable.MainActivity">
+
 </LinearLayout>

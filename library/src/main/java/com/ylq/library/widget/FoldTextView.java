@@ -21,7 +21,7 @@ public class FoldTextView extends TextView {
     private Drawable mDrawable_YLQ;
     private static final int FOLD_AREA_RIGHT_TOP_COLOR = Color.parseColor("#ffe2ecee");
     private static final int FOLD_AREA_LEFT_BOTTOM_COLOR = Color.parseColor("#50e2ecee");
-    private static final int TOTAL_BACKGROUND_COLOR = Color.parseColor("#d6d7d7");
+    private static final int TOTAL_BACKGROUND_COLOR = Color.parseColor("#e0d7ecef");
     private Paint mPaintR;
     private Paint mPaintL;
     private Paint mPaintT;
@@ -112,7 +112,7 @@ public class FoldTextView extends TextView {
         }else {
             mDrawable_YLQ = getBackground();
             setBackground(null);
-            setTextColor(Color.RED);
+            setTextColor(Color.parseColor("#99a9a6"));
         }
         invalidate();
     }

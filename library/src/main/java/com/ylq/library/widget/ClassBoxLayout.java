@@ -238,7 +238,6 @@ public class ClassBoxLayout extends FrameLayout {
         for (int i = 0; i < mAdapter.getCount(); i++)
             addView(mAdapter.getView(i));
         addView(new TimeIndicator(getContext()));
-
     }
 
 

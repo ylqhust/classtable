@@ -82,7 +82,6 @@ public class TimeIndicator extends View {
     @Override
     protected void onDraw(Canvas canvas){
         super.onDraw(canvas);
-        System.out.println("onDraw\n");
         canvas.drawPath(mPath,mPaint);
     }
 }
