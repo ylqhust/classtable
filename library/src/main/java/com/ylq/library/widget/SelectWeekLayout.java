@@ -53,11 +53,7 @@ public class SelectWeekLayout extends FrameLayout {
 
 
     private void initPath(int w, int h){
-        if(mPath != null)
-            return;
         mPath = new Path();
-
-
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             mPath.moveTo(0,TOP_TRIANGLE_HEIGHT+CIRCLE_RADIUS);
             mPath.lineTo(CIRCLE_RADIUS,TOP_TRIANGLE_HEIGHT);

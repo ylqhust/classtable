@@ -32,14 +32,17 @@
     <color name="add_class_time_pressed_greed">#a040bc0e</color>
     <color name="delete_class_time_normal_color">#f7604f</color>
     <color name="delete_class_time_pressed_color">#a0f7604f</color>
+    <color name="select_class_week_dialog_background">#f6f6f6</color>
+    <color name="transparent">#80000000</color>
+    <color name="classtable_select_class_dialog_divide_line_color">#d1d1d1</color>
     <string-array name="ClassColorArray">
-        <item>#c08fd156</item>
-        <item>#c06ec1a7</item>
-        <item>#c0d7c587</item>
-        <item>#c07fcfce</item>
-        <item>#c08fb8ce</item>
-        <item>#c07fa8e6</item>
-        <item>#c0e7c667</item>
+        <item>#c01daba7</item>
+        <item>#c0fbba47</item>
+        <item>#c000aaee</item>
+        <item>#c0e44d3f</item>
+        <item>#c02ea9df</item>
+        <item>#c040bc0e</item>
+        <item>#c0f17fa0</item>
         <item>#c057c0de</item>
         <item>#c0e096b1</item>
         <item>#c0bfa896</item>

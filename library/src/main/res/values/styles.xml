@@ -75,6 +75,17 @@
         <item name="android:layout_marginTop">8dp</item>
         <item name="android:layout_marginLeft">16dp</item>
         <item name="android:layout_marginRight">16dp</item>
-
+        <item name="android:singleLine">true</item>
     </style>
+
+    <style name="classtable_select_class_dialog_text_style">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:textColor">@color/classtable_select_class_dialog_text_color</item>
+        <item name="android:background">@drawable/select_week_dialog_button_selector</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <color name="classtable_select_class_dialog_text_color">#3b97e9</color>
 </resources>

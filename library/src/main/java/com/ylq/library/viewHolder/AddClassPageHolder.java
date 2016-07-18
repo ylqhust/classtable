@@ -3,12 +3,14 @@ package com.ylq.library.viewHolder;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.ylq.library.R;
+import com.ylq.library.activity.ClasstableBaseActivity;
 import com.ylq.library.util.ClickGuard;
 
 import java.util.ArrayList;
@@ -29,6 +31,7 @@ public class AddClassPageHolder extends ClasstableBaseHolder implements View.OnC
     private TextView mAddNewTime;//添加新的时间段
     private LinearLayout mLinearContainer;
     private List<NewTimeContent> mNewTimeContents = new ArrayList<>();
+    private boolean mIsDialogShowing = false;
 
 
     public AddClassPageHolder(Context context) {
@@ -73,6 +76,12 @@ public class AddClassPageHolder extends ClasstableBaseHolder implements View.OnC
             String address = getAddress();
             mNewTimeContents.add(new NewTimeContent(address));
             mLinearContainer.addView(mNewTimeContents.get(mNewTimeContents.size() - 1).view);
+        }else if(id==R.id.classtable_add_class_page_text_select_section){
+
+        }else if(id==R.id.classtable_add_class_page_text_select_week){
+            ViewGroup viewGroup = (ViewGroup) ((ClasstableBaseActivity)getContext()).getWindow().getDecorView();
+            viewGroup.addView(LayoutInflater.from(getContext()).inflate(R.layout.classtable_select_class_dialog,null));
+            mIsDialogShowing = true;
         }
     }
 
@@ -133,9 +142,8 @@ public class AddClassPageHolder extends ClasstableBaseHolder implements View.OnC
         @Override
         public void onClick(View v) {
             if (v == selectWeek) {
-
             } else if (v == selectSection) {
-                
+
             } else if (v == delete) {
                 mLinearContainer.removeView(view);
                 this.unGuard();
@@ -145,5 +153,14 @@ public class AddClassPageHolder extends ClasstableBaseHolder implements View.OnC
                     mNewTimeContents.get(i).setTitle(i + 1);
             }
         }
+    }
+
+    @Override
+    public void back(){
+        if(mIsDialogShowing){
+            ViewGroup viewGroup = (ViewGroup) ((ClasstableBaseActivity)getContext()).getWindow().getDecorView();
+            viewGroup.removeViewAt(viewGroup.getChildCount()-1);
+        }else
+            super.back();
     }
 }
