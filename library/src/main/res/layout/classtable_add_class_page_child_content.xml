@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="50dp"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/classtable_add_class_page_child_text_another_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/classtable_another_time"
+            android:textColor="@color/left_time_top_text_color"
+            android:layout_marginLeft="16dp"/>
+        <TextView
+            android:id="@+id/classtable_add_class_page_child_text_select_week"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/add_button_page_text_selector"
+            android:gravity="center"
+            android:text="@string/classtable_select_weeks"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/classtable_add_class_page_child_text_select_section"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/add_button_page_text_selector"
+            android:gravity="center"
+            android:text="@string/classtable_select_section"
+            android:textColor="@color/white" />
+
+        <EditText
+            android:id="@+id/classtable_add_class_page_child_edit_classAddress"
+            style="@style/add_class_page_edittext_style"
+            android:hint="@string/classtable_class_address" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/classtable_add_class_page_child_text_delete"
+        android:layout_width="40dp"
+        android:layout_height="100dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="8dp"
+        android:background="@drawable/delete_class_time_selector"
+        android:gravity="center"
+        android:text="@string/classtable_delete_class_time"
+        android:textColor="@color/white" />
+</RelativeLayout>

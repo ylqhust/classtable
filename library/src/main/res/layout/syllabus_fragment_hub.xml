@@ -14,7 +14,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:background="@color/green_00cd90">
+        android:background="@color/classtable_theme_color">
 
         <LinearLayout
             android:id="@+id/syllabus_fragment_hub_top_back"

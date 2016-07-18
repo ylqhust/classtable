@@ -64,6 +64,8 @@ public class WBY_HubLoginPageHolder extends ClasstableBaseHolder implements Call
     private View mLogin;
     private boolean mCanLogin; // indicate whether or not http://hub.hust.edu.cn/index.jsp is completely loaded.
 
+    private boolean mRestart = false;//如果获取成功并且解析成功准备进入ClassPageHolder的时候，如果这个是true，就将所有的已存在的ViewHolder全部清空，从新开始
+
     private View mLoadFirstPageCompleted; // 右侧连接hub成功
     private View mLoadFirstPageUncompleted; // 中部提示
 
@@ -75,6 +77,13 @@ public class WBY_HubLoginPageHolder extends ClasstableBaseHolder implements Call
 
     public WBY_HubLoginPageHolder(int id, Context context) {
         super(id, context);
+    }
+
+    public WBY_HubLoginPageHolder(Context context, boolean restart) {
+        super(R.layout.syllabus_fragment_hub, context);
+        mRestart = restart;
+        initWebView();
+        prepare();
     }
 
     @Override
@@ -220,7 +229,7 @@ public class WBY_HubLoginPageHolder extends ClasstableBaseHolder implements Call
 
                     if (url.equals("http://s.hub.hust.edu.cn/hub.jsp")) {
                         String cookie = android.webkit.CookieManager.getInstance().getCookie("s.hub.hust.edu.cn");
-                        Query.getInstance().hubCourse(Who.HUB_COURSE, cookie,WBY_HubLoginPageHolder.this);
+                        Query.getInstance().hubCourse(Who.HUB_COURSE, cookie, WBY_HubLoginPageHolder.this);
                     }
                 } catch (Exception e) {
                     // 退出之后，引用会爆错,null point
@@ -233,9 +242,11 @@ public class WBY_HubLoginPageHolder extends ClasstableBaseHolder implements Call
     @Override
     public void begin(@NonNull Who who) {
         if (who == Who.HUB_COURSE) {
-            //显示正在解析的Dialog
-            back();
-            holderIn(new IngParserClassHolder(getContext()));
+            if(isShown()){
+                //显示正在解析的Dialog
+                back();
+                holderIn(new IngParserClassHolder(getContext()));
+            }
         }
     }
 
@@ -246,13 +257,19 @@ public class WBY_HubLoginPageHolder extends ClasstableBaseHolder implements Call
             AllClasses allClasses = null;
             try {
                 allClasses = AllClasses.parserHubBean(bean);
-                Store.saveClassData(getContext(),allClasses);
-                back();
-                anotherBack();
-                holderIn(new ClassPageHolder(getContext(),allClasses));
+                Store.saveClassData(getContext(), allClasses);
+                if(!isShown())
+                    return;
+                if (!mRestart) {
+                    back();
+                    anotherBack();
+                    holderIn(new ClassPageHolder(getContext(), allClasses));
+                } else
+                    reStart(new ClassPageHolder(getContext(), allClasses));
+
             } catch (Exception e) {
                 e.printStackTrace();
-                Toast.makeText(getContext(),"HUB出问题了，无法获取课表",Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), "HUB出问题了，无法获取课表", Toast.LENGTH_LONG).show();
                 back();
                 back();
             }

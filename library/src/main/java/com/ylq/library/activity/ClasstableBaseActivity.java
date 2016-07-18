@@ -167,4 +167,25 @@ public class ClasstableBaseActivity extends AppCompatActivity {
     }
 
 
+    public void reStart(ClasstableBaseHolder holder) {
+        while(mStack.top()!=null){
+            mStack.pop().unGurad();
+        }
+        mStack.push(holder);
+        getContainer().removeAllViews();
+        getContainer().addView(holder.getView());
+        holder.in(DEFAULT_DURATION,null);
+    }
+
+    public boolean isShown(ClasstableBaseHolder holder) {
+        for(int i=mStack.size()-1;i>=0;i--){
+            ClasstableBaseHolder c = mStack.get(i);
+            if(c==null)
+                return false;
+            if(!c.HideLastPage())
+                continue;
+            return c==holder;
+        }
+        return false;
+    }
 }

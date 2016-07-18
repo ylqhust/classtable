@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <EditText
+        android:id="@+id/classtable_add_class_page_edit_className"
+        style="@style/add_class_page_edittext_style"
+        android:hint="课程名称" />
+
+    <EditText
+        android:id="@+id/classtable_add_class_page_edit_teacherName"
+        style="@style/add_class_page_edittext_style"
+        android:hint="老师" />
+
+    <TextView
+        android:id="@+id/classtable_add_class_page_text_select_week"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/add_button_page_text_selector"
+        android:gravity="center"
+        android:text="@string/classtable_select_weeks"
+        android:textColor="@color/white" />
+
+    <TextView
+        android:id="@+id/classtable_add_class_page_text_select_section"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/add_button_page_text_selector"
+        android:gravity="center"
+        android:text="@string/classtable_select_section"
+        android:textColor="@color/white" />
+
+    <EditText
+        android:id="@+id/classtable_add_class_page_edit_classAddress"
+        style="@style/add_class_page_edittext_style"
+        android:hint="@string/classtable_class_address" />
+</merge>
+

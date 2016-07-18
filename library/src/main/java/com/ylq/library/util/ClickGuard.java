@@ -11,7 +11,7 @@ import java.util.HashMap;
  */
 public class ClickGuard {
     private static HashMap<View, Wrap> mHashMap = new HashMap<>();
-    private static final long SENSITIVI = 2000;//敏感度2000毫秒，也就是多次点击之间时间差小于2秒都只算一次点击
+    private static final long SENSITIVI = 1000;//敏感度1000毫秒，也就是多次点击之间时间差小于1秒都只算一次点击
     private static View.OnClickListener mListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {

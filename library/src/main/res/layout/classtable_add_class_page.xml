@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent">
+    <include layout="@layout/classtable_add_class_page_toolbar" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        <include layout="@layout/classtable_add_class_page_content"/>
+        <LinearLayout
+            android:id="@+id/classtable_add_class_page_linear_child_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"/>
+        <TextView
+            android:id="@+id/classtable_add_class_page_text_add_new_time"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="80dp"
+            android:layout_marginRight="80dp"
+            android:text="@string/add_new_class_time"
+            android:textColor="@color/white"
+            android:background="@drawable/add_class_time_selector"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="30dp"/>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

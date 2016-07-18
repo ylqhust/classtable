@@ -2,6 +2,7 @@ package com.ylq.library.viewHolder;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.View;
@@ -26,6 +27,7 @@ public class ClassPageHolder extends ClasstableBaseHolder implements View.OnClic
     private RelativeLayout mRelaWeek;//选择当前周的按钮
     private TextView mTVCurrentWeek;//显示当前周的TextView
     private RelativeLayout mRelaSetting;//设置按钮
+    private FloatingActionButton mAddButton;
     private ViewPager mViewPager;
     private PagerAdapter mAdapter;
     private AllClasses mAllClasses;
@@ -35,7 +37,7 @@ public class ClassPageHolder extends ClasstableBaseHolder implements View.OnClic
     public ClassPageHolder(Context context, AllClasses allClasses) {
         super(R.layout.classtable_class_page, context);
         mAllClasses = allClasses;
-        mAllClasses.addFiveEmptyWeek();
+        mAllClasses.addEmptyWeekUntil24();
         mCurrentWeek = getCurrentWeek();
         mSelectWeek = mCurrentWeek;
         mAdapter = new ClassViewPagerAdapter2(getContext(),allClasses);
@@ -123,6 +125,7 @@ public class ClassPageHolder extends ClasstableBaseHolder implements View.OnClic
         this.mRelaSetting = findR(R.id.classtable_toolbar_setting_rela);
         this.mViewPager = (ViewPager) findViewById(R.id.classtable_class_page_viewpager);
         this.mTVCurrentWeek = findT(R.id.classtable_toolbar_tv);
+        this.mAddButton = (FloatingActionButton) findViewById(R.id.classtable_class_page_float_button);
     }
 
     @Override
@@ -141,17 +144,19 @@ public class ClassPageHolder extends ClasstableBaseHolder implements View.OnClic
                     mViewPager.setCurrentItem(weekIndex-1,true);
                 }
             }));
+        }else if(id==R.id.classtable_class_page_float_button){
+            holderIn(new AddButtonHolder(getContext()));
         }
     }
 
     @Override
     public void Guard() {
-        ClickGuard.guard(this,mRelaBack,mRelaWeek,mRelaSetting);
+        ClickGuard.guard(this,mAddButton,mRelaBack,mRelaWeek,mRelaSetting);
     }
 
     @Override
     public void unGurad() {
-        ClickGuard.unGuard(mRelaBack,mRelaWeek,mRelaSetting);
+        ClickGuard.unGuard(mRelaBack,mRelaWeek,mRelaSetting,mAddButton);
         if(mAdapter!=null && mAdapter instanceof ClassViewPagerAdapter2)
             ((ClassViewPagerAdapter2)mAdapter).finish();
     }

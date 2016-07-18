@@ -23,11 +23,15 @@
     <color name="classtable_classes_container_pm_background">#d5f9ff</color>
     <color name="left_time_top_text_color">#4282c4</color>
     <color name="left_time_view_color">#b4dbed</color>
-    <color name="left_time_background_color">#d8f8ff</color>
-    <color name="day_week_background_color">#cdf5ff</color>
+    <color name="left_time_background_color">#d0d8f8ff</color>
+    <color name="day_week_background_color">#d0cdf5ff</color>
     <color name="alpha_white">#00ffffff</color>
     <color name="select_week_item_text_color">#3b95e8</color>
     <color name="not_the_week_text_color">#f58046</color>
+    <color name="add_class_time_normal_green">#40bc0e</color>
+    <color name="add_class_time_pressed_greed">#a040bc0e</color>
+    <color name="delete_class_time_normal_color">#f7604f</color>
+    <color name="delete_class_time_pressed_color">#a0f7604f</color>
     <string-array name="ClassColorArray">
         <item>#c08fd156</item>
         <item>#c06ec1a7</item>

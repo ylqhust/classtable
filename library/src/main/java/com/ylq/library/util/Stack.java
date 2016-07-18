@@ -48,4 +48,10 @@ public class Stack<T> {
             return mStack.size();
         }
     }
+
+    public T get(int i){
+        if(mStack.size()<=i || i<0)
+            return null;
+        return mStack.get(i);
+    }
 }

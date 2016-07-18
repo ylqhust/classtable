@@ -224,6 +224,14 @@ public abstract class ClasstableBaseHolder implements PageAnimator{
         ((ClasstableBaseActivity)getContext()).anotherBack();
     }
 
+    public void reStart(ClasstableBaseHolder holder){
+        ((ClasstableBaseActivity)getContext()).reStart(holder);
+    }
+
+    public boolean isShown(){
+        return ((ClasstableBaseActivity)getContext()).isShown(this);
+    }
+
     public void holderIn(ClasstableBaseHolder holder){
         ((ClasstableBaseActivity)getContext()).holderIn(holder);
     }

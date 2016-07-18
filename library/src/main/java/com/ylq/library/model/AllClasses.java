@@ -91,12 +91,12 @@ public class AllClasses {
         return mAllClasses.size();
     }
 
-    public void addFiveEmptyWeek() {
-        mAllClasses.add(mAllClasses.get(mAllClasses.size()-1).getEmptyWeek());
-        mAllClasses.add(mAllClasses.get(mAllClasses.size()-1).getEmptyWeek());
-        mAllClasses.add(mAllClasses.get(mAllClasses.size()-1).getEmptyWeek());
-        mAllClasses.add(mAllClasses.get(mAllClasses.size()-1).getEmptyWeek());
-        mAllClasses.add(mAllClasses.get(mAllClasses.size()-1).getEmptyWeek());
+    public void addEmptyWeekUntil24() {
+        if(mAllClasses.size()>=24)
+            return;
+        while(mAllClasses.size()!=24){
+            mAllClasses.add(mAllClasses.get(mAllClasses.size()-1).getEmptyWeek());
+        }
     }
     public int getAllWeekCount() {
         return mAllClasses.size();

@@ -18,6 +18,17 @@
     <string name="classtable_setting_page_content_notification">明日课程通知</string>
     <string name="classtable_setting_page_content_notification_text">开启后会在每晚9点30发送通知提醒明天所要上的的课程</string>
     <string name="classtable_notification_title">明天的课程</string>
+    <string name="classtable_cengke">蹭课</string>
+    <string name="classtable_add_button_page_get_from_hub">HUB导入</string>
+    <string name="classtable_add_button_page_text_add_by_myself">手动添加</string>
+    <string name="classtable_add_class">添加课程</string>
+    <string name="classtable_ok">确定</string>
+    <string name="classtable_select_weeks">选择周次</string>
+    <string name="classtable_select_section">选择上课节次</string>
+    <string name="classtable_class_address">地点</string>
+    <string name="add_new_class_time">新的时间段</string>
+    <string name="classtable_delete_class_time">删除</string>
+    <string name="classtable_another_time">其他时段</string>
 
     <string-array name="ing_login_hub">
         <item>正在登陆HUB.</item>

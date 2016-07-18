@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/classtable_add_button_page_rela"
+    android:layout_width="match_parent"
+    android:paddingRight="16dp"
+    android:layout_height="match_parent">
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/classtable_add_button_page_float_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="16dp"
+        android:src="@mipmap/ic_add_white_48dp"
+        app:backgroundTint="@color/left_time_top_text_color" />
+    <TextView
+        style="@style/add_button_page_text_style"
+        android:id="@+id/classtable_add_button_page_text_cengke"
+        android:text="@string/classtable_cengke"
+        android:layout_above="@+id/classtable_add_button_page_float_button"
+        />
+    <TextView
+        style="@style/add_button_page_text_style"
+        android:id="@+id/classtable_add_button_page_text_get_from_hub"
+        android:text="@string/classtable_add_button_page_get_from_hub"
+        android:layout_above="@+id/classtable_add_button_page_text_cengke" />
+
+    <TextView
+        style="@style/add_button_page_text_style"
+        android:id="@+id/classtable_add_button_page_text_add_by_myself"
+        android:text="@string/classtable_add_button_page_text_add_by_myself"
+        android:layout_above="@+id/classtable_add_button_page_text_get_from_hub"/>
+</RelativeLayout>
