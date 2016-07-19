@@ -29,12 +29,15 @@
     <color name="select_week_item_text_color">#3b95e8</color>
     <color name="not_the_week_text_color">#f58046</color>
     <color name="add_class_time_normal_green">#40bc0e</color>
-    <color name="add_class_time_pressed_greed">#a040bc0e</color>
+    <color name="add_class_time_pressed_greed">#298409</color>
     <color name="delete_class_time_normal_color">#f7604f</color>
-    <color name="delete_class_time_pressed_color">#a0f7604f</color>
-    <color name="select_class_week_dialog_background">#f6f6f6</color>
+    <color name="delete_class_time_pressed_color">#e15247</color>
+    <color name="select_class_week_dialog_background">#eaeaea</color>
+    <color name="select_class_week_dialog_background_alpha">#e0e0e0</color>
     <color name="transparent">#80000000</color>
     <color name="classtable_select_class_dialog_divide_line_color">#d1d1d1</color>
+    <color name="select_week_item_pressed">#0094ce</color>
+    <color name="select_week_item_normal">#00aaee</color>
     <string-array name="ClassColorArray">
         <item>#c01daba7</item>
         <item>#c0fbba47</item>

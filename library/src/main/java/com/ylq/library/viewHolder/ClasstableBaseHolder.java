@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.ylq.library.activity.ClasstableBaseActivity;
 import com.ylq.library.activity.ClasstableMainActivity;
+import com.ylq.library.dialog.ClasstableBaseDialog;
 
 /**
  * Created by apple on 16/7/11.
@@ -234,6 +235,10 @@ public abstract class ClasstableBaseHolder implements PageAnimator{
 
     public void holderIn(ClasstableBaseHolder holder){
         ((ClasstableBaseActivity)getContext()).holderIn(holder);
+    }
+
+    public void dialogIn(ClasstableBaseDialog dialog){
+        ((ClasstableBaseActivity)getContext()).dialogIn(dialog);
     }
 
     public boolean backTwice(){

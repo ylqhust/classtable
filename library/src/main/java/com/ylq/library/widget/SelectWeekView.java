@@ -159,10 +159,10 @@ public class SelectWeekView extends View {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        if(event.getX()>UNITX*5)
+        if(event.getX()>UNITX*5 || event.getX()<0)
             return false;
-        if(event.getY()>UNITY*5)
-            return false;   
+        if(event.getY()>UNITY*5 || event.getY()<0)
+            return false;
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 indexDown = getIndex(event.getX(), event.getY());
@@ -220,5 +220,14 @@ public class SelectWeekView extends View {
         int X = (int) (x / UNITX);
         int Y = (int) (y / UNITY);
         return  Y*5+X;
+    }
+
+    public byte[] getChecked() {
+        return CHECKED;
+    }
+
+    public void setData(byte[] weekChecked) {
+        if(weekChecked!=null)
+            CHECKED = weekChecked;
     }
 }

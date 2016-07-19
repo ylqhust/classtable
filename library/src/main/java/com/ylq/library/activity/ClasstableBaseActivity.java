@@ -14,8 +14,8 @@ import com.readystatesoftware.systembartint.SystemBarTintManager;
 import com.ylq.library.R;
 import com.ylq.library.util.Stack;
 import com.ylq.library.viewHolder.AnimationEndCallBack;
-import com.ylq.library.viewHolder.ClassPageHolder;
 import com.ylq.library.viewHolder.ClasstableBaseHolder;
+import com.ylq.library.dialog.ClasstableBaseDialog;
 
 import java.lang.reflect.Field;
 
@@ -26,6 +26,7 @@ public class ClasstableBaseActivity extends AppCompatActivity {
 
     final private static int DEFAULT_DURATION = 200;
     private Stack<ClasstableBaseHolder> mStack = new Stack<>();
+    private ClasstableBaseDialog mDialog;
 
     @Override
     protected void onCreate(Bundle saveInstance) {
@@ -111,10 +112,36 @@ public class ClasstableBaseActivity extends AppCompatActivity {
         }
     }
 
+    public void dialogIn(ClasstableBaseDialog dialog){
+        if(mDialog!=null)
+            throw new IllegalStateException("同一时间只能有一个Dialog");
+        mDialog = dialog;
+        ViewGroup mDecorView = (ViewGroup) getWindow().getDecorView();
+        mDecorView.addView(mDialog.getView());
+        mDialog.in(DEFAULT_DURATION);
+    }
+
+    private boolean dismissDialog(){
+        if(mDialog==null)
+            return false;
+        final ViewGroup mDecorView = (ViewGroup) getWindow().getDecorView();
+        mDialog.leave(DEFAULT_DURATION, new AnimationEndCallBack() {
+            @Override
+            public void end() {
+                mDecorView.removeView(mDialog.getView());
+                mDialog.unGard();
+                mDialog = null;
+            }
+        });
+        return true;
+    }
+
     /**
      * 回退
      */
     public void back() {
+        if(dismissDialog())
+            return;
         if (mStack.size() <= 1) {
             ClasstableBaseHolder classtableBaseHolder = mStack.pop();
             if (classtableBaseHolder != null)
@@ -137,7 +164,10 @@ public class ClasstableBaseActivity extends AppCompatActivity {
         }
     }
 
+
     public void anotherBack() {
+        if(dismissDialog())
+            return;
         if(mStack.size()!=1)
             return;
         final ClasstableBaseHolder classtableBaseHolder = mStack.pop();

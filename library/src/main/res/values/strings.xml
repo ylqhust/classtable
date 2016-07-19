@@ -31,6 +31,7 @@
     <string name="classtable_another_time">其他时段</string>
     <string name="classtable_select_week">选择周数</string>
     <string name="classtable_cancle">取消</string>
+    <string name="classtable_class_name_is_null">课程名不能为null哦</string>
 
     <string-array name="ing_login_hub">
         <item>正在登陆HUB.</item>
