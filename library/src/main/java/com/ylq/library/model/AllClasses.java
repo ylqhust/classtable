@@ -65,6 +65,24 @@ public class AllClasses {
         return mAllClasses.get(index-1).getOneWeekJSONObject();
     }
 
+    public String getAllDataJSONString(){
+        JSONArray all = new JSONArray();
+        int i=1;
+        while(true){
+            JSONObject object = null;
+            try {
+                object = getOneWeekJSONObject(i++);
+            } catch (JSONException e) {
+                e.printStackTrace();
+                return null;
+            }
+            if(object==null)
+                break;
+            all.put(object);
+        }
+        return all.toString();
+    }
+
 
     public static AllClasses parserJSONArray(JSONArray jsonArray) throws JSONException {
         AllClasses allClasses = new AllClasses();
@@ -104,5 +122,58 @@ public class AllClasses {
 
     public List<OneWeekClasses> getData(){
         return mAllClasses;
+    }
+
+    public static AllClasses parserNewClassDataWrap(NewClassDataWrap usefulData) {
+        AllClasses allClasses = new AllClasses();
+        int colorIndex = (int) (System.currentTimeMillis()%10);
+        if(colorIndex>9)
+            colorIndex=9;
+        for(int i=0;i<usefulData.weeks.get(0).length;i++){
+            List<int[]> sections = new ArrayList<>();
+            List<String> addresses = new ArrayList<>();
+            for(int j=0;j<usefulData.weeks.size();j++){
+                if(usefulData.weeks.get(j)[i]==1){
+                    sections.add(usefulData.sections.get(j));
+                    addresses.add(usefulData.addresses.get(j));
+                }
+            }
+            if(sections.size()==0)
+                continue;
+            allClasses.add(OneWeekClasses.getANewWeek(usefulData.className,addresses,i+1,sections,colorIndex));
+        }
+        return allClasses;
+    }
+
+    public AllClasses combine(AllClasses newClass) {
+        List<OneWeekClasses> news = newClass.mAllClasses;
+        for(int i=0;i<mAllClasses.size();i++){
+            if(news.size()==0)
+                break;
+            for(int j=0;j<news.size();j++)
+                if(mAllClasses.get(i).combine(news.get(j))){
+                    news.remove(j);
+                    break;
+                }
+        }
+        while(news.size()!=0){//说明周次是错开的，那么将news中的周次按照时间顺序插入到mAllClasses中
+            OneWeekClasses ow = news.get(0);
+            insertByTime(mAllClasses,ow);
+            news.remove(0);
+        }
+        return this;
+    }
+
+    private void insertByTime(List<OneWeekClasses> mother, OneWeekClasses ow) {
+        if(mother.size()==0){
+            mother.add(ow);
+            return;
+        }
+        for(int i=0;i<mother.size();i++)
+            if(ow.before(mother.get(i))){
+                mother.add(i,ow);
+                return;
+            }
+        mother.add(ow);
     }
 }

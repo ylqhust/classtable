@@ -24,15 +24,7 @@ public class ExampleUnitTest {
 
     @Test
     public void test() throws JSONException {
-        JSONArray array = new JSONArray();
-        JSONObject object = new JSONObject();
-        object.put("1", "x");
-        JSONObject object1 = new JSONObject();
-        object1.put("2", "xx");
-        JSONObject object2 = new JSONObject();
-        object2.put("3", "xxx");
-        array.put(object).put(object1).put(object2);
-        System.out.println(array.toString());
+        System.out.println(new Double(8.30));
     }
 
 }

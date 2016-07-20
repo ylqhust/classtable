@@ -98,4 +98,8 @@ public class ClassUnit {
                 object.getInt(MONTH),
                 object.getInt(DAY));
     }
+
+    public static ClassUnit getANewClassUnit(String className, String s, int mMonth, int mDay, int[] section, int colorIndex) {
+        return new ClassUnit(s,className,section[1]+1,section[2]-section[1]+1,section[0]+1,colorIndex,mMonth,mDay);
+    }
 }

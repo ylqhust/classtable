@@ -32,6 +32,9 @@
     <string name="classtable_select_week">选择周数</string>
     <string name="classtable_cancle">取消</string>
     <string name="classtable_class_name_is_null">课程名不能为null哦</string>
+    <string name="classtable_not_exist_useful_time">没有一个可用的时间-_-//</string>
+    <string name="classtable_add_class_success">添加成功!</string>
+    <string name="classtable_add_class_failed">添加失败，没内存了吧-_-\\\\</string>
 
     <string-array name="ing_login_hub">
         <item>正在登陆HUB.</item>

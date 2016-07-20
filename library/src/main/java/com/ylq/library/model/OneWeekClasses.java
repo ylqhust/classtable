@@ -4,6 +4,7 @@ import android.support.annotation.IntRange;
 
 import com.ylq.library.query.Config;
 import com.ylq.library.util.DateUtils;
+import com.ylq.library.util.Store;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -21,8 +22,8 @@ import java.util.Scanner;
 public class OneWeekClasses {
 
     private Common.SEASON mSeason = Common.SEASON.SUMMER;
-    private int[] mMonth = new int[7];
-    private int[] mDay = new int[7];
+    public int[] mMonth = new int[7];
+    public int[] mDay = new int[7];
 
     private List<OneDayClasses> mOneDayClasses = new ArrayList<>();
 
@@ -171,6 +172,93 @@ public class OneWeekClasses {
 
     public String getMonthAndDateText(@IntRange(from = 0,to = 6) int i) {
         return mMonth[i]+"."+mDay[i];
+    }
+
+    /**
+     * 返回这一周的课程
+     * @param className
+     * @param addresses
+     * @param weekth 第几周，从1开始，到24结束
+     * @param sections
+     * @return
+     */
+    public static OneWeekClasses getANewWeek(String className, List<String> addresses, @IntRange(from = 1, to = 24) int weekth, List<int[]> sections, int colorIndex) {
+        OneWeekClasses oneWeek = new OneWeekClasses();
+        oneWeek.mSeason = Store.getSeason(weekth);
+        oneWeek.mMonth = Store.getMonth(weekth);
+        oneWeek.mDay = Store.getDay(weekth);
+        List<int[]> s = sections;
+        List<String> ad = addresses;
+        while(s.size()>0){
+            List<int[]> ss = new ArrayList<>();
+            List<String> sa = new ArrayList<>();
+            ss.add(s.get(0));
+            sa.add(ad.get(0));
+            s.remove(0);
+            ad.remove(0);
+            for(int i=0;i<s.size();i++)
+                if(s.get(i)[0]==ss.get(0)[0]){
+                    ss.add(s.get(i));
+                    sa.add(ad.get(i));
+                    s.remove(i);
+                    ad.remove(i);
+                    i--;
+                }
+            oneWeek.add(OneDayClasses.getANewDay(className,sa,weekth,ss,colorIndex));
+        }
+        return oneWeek;
+    }
+
+    public boolean combine(OneWeekClasses oneWeekClasses) {
+        if(mMonth[0]!=oneWeekClasses.mMonth[0] || mDay[0]!=oneWeekClasses.mDay[0] || mSeason!=oneWeekClasses.mSeason)
+            return false;
+        List<OneDayClasses> oneDayClasses = oneWeekClasses.mOneDayClasses;
+        for(int i=0;i<mOneDayClasses.size();i++)
+            for(int j=0;j<oneDayClasses.size();j++)
+                if(mOneDayClasses.get(i).combine(oneDayClasses.get(j))){
+                    oneDayClasses.remove(j);
+                    j--;
+                }
+        while(oneDayClasses.size()!=0){
+            OneDayClasses od = oneDayClasses.get(0);
+            insertByTime(mOneDayClasses,od);
+            oneDayClasses.remove(0);
+        }
+        return true;
+    }
+
+    private void insertByTime(List<OneDayClasses> mother, OneDayClasses od) {
+        if(mother.size()==0){
+            mother.add(od);
+            return;
+        }
+        for(int i=0;i<mother.size();i++)
+            if(od.mWeek<mother.get(i).mWeek){
+                mother.add(i,od);
+                return;
+            }
+        mother.add(od);
+    }
+
+    /**
+     * 判断this周是否在oneWeekClasses周之前
+     * @param oneWeekClasses
+     * @return
+     */
+    public boolean before(OneWeekClasses oneWeekClasses) {
+        if(mMonth[6]==oneWeekClasses.mMonth[0])
+            return mDay[6]<oneWeekClasses.mDay[0];
+        int thisMonth = mMonth[6];
+        int thatMonth = oneWeekClasses.mMonth[0];
+        if(thisMonth>=8 && thisMonth<=12 && thatMonth>=8 && thatMonth<=12)
+            return thisMonth<thatMonth;
+        if(thisMonth>=8 && thisMonth<=12 && thatMonth>=1 && thatMonth<=2)
+            return true;//认为thatMonth是下一年的
+        if(thisMonth>=1 && thisMonth<=2 && thatMonth>=1 && thatMonth<=2)
+            return thisMonth<thatMonth;
+        if(thisMonth>=1 && thisMonth<=2 && thatMonth>=8 && thatMonth<=12)
+            return false;
+        return thisMonth<thatMonth;
     }
 }
 

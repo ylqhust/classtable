@@ -37,17 +37,19 @@
     <color name="transparent">#80000000</color>
     <color name="classtable_select_class_dialog_divide_line_color">#d1d1d1</color>
     <color name="select_week_item_pressed">#0094ce</color>
+    <color name="select_week_item_pressed_alpha">#9000aaee</color>
     <color name="select_week_item_normal">#00aaee</color>
+    <color name="day_week_select_day_shape_color">#ffffff</color>
     <string-array name="ClassColorArray">
-        <item>#c01daba7</item>
-        <item>#c0fbba47</item>
-        <item>#c000aaee</item>
-        <item>#c0e44d3f</item>
-        <item>#c02ea9df</item>
-        <item>#c040bc0e</item>
-        <item>#c0f17fa0</item>
-        <item>#c057c0de</item>
-        <item>#c0e096b1</item>
-        <item>#c0bfa896</item>
+        <item>#1daba7</item>
+        <item>#fbba47</item>
+        <item>#00aaee</item>
+        <item>#e44d3f</item>
+        <item>#2ea9df</item>
+        <item>#40bc0e</item>
+        <item>#f17fa0</item>
+        <item>#57c0de</item>
+        <item>#e096b1</item>
+        <item>#bfa896</item>
     </string-array>
 </resources>

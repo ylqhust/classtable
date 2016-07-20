@@ -1,6 +1,7 @@
 package com.ylq.library.model;
 
 import com.ylq.library.query.HubBean;
+import com.ylq.library.util.Store;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -17,8 +18,9 @@ public class OneDayClasses {
     public int mYear;
     public int mMonth;
     public int mDay;
-    public int mWeek;
+    public int mWeek;//星期几1-7
     private List<ClassUnit> mClassUnit = new ArrayList<>();
+
     private OneDayClasses(){}
     public OneDayClasses(HubBean.Data data) throws ParseException {
         mMonth = Common.getMonth(data.start);
@@ -78,6 +80,26 @@ public class OneDayClasses {
             sb.append(mClassUnit.get(i).mClassName+"|");
         sb.append(mClassUnit.get(i).mClassName);
         return sb.toString();
+    }
+
+    public static OneDayClasses getANewDay(String className, List<String> address, int weekth, List<int[]> sections, int colorIndex) {
+        OneDayClasses oneDayClasses = new OneDayClasses();
+        oneDayClasses.mYear = 1996;
+        oneDayClasses.mMonth = Store.getMonth(weekth)[sections.get(0)[0]];
+        oneDayClasses.mDay = Store.getDay(weekth)[sections.get(0)[0]];
+        oneDayClasses.mWeek = sections.get(0)[0]+1;
+        for(int i=0;i<sections.size();i++)
+            oneDayClasses.add(ClassUnit.getANewClassUnit(className,address.get(i),oneDayClasses.mMonth,
+                    oneDayClasses.mDay,sections.get(i),colorIndex));
+        return oneDayClasses;
+    }
+
+    public boolean combine(OneDayClasses oneDayClasses) {
+        if(mMonth!=oneDayClasses.mMonth || mDay!=oneDayClasses.mDay||mWeek!=oneDayClasses.mWeek)
+            return false;
+        for(int i=0;i<oneDayClasses.mClassUnit.size();i++)
+            add(oneDayClasses.mClassUnit.get(i));
+        return true;
     }
 }
 

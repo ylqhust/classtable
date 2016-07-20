@@ -20,13 +20,13 @@
     </RelativeLayout>
 
     <LinearLayout
+        android:id="@+id/classtable_day_week_father_linear"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/day_week_background_color"
         android:orientation="horizontal">
 
         <LinearLayout style="@style/day_week_linear_style">
-
             <TextView
                 android:id="@+id/classtable_day_week_tv_day1"
                 style="@style/day_week_text_style" />

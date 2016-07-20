@@ -6,6 +6,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -16,6 +17,7 @@ import com.ylq.library.model.AllClasses;
 import com.ylq.library.model.Common;
 import com.ylq.library.model.OneWeekClasses;
 import com.ylq.library.util.ClickGuard;
+import com.ylq.library.util.DateUtils;
 
 /**
  * 课程表首页的Holder
@@ -83,11 +85,21 @@ public class ClassPageHolder extends ClasstableBaseHolder implements View.OnClic
         if(weekth==mCurrentWeek){
             mTVCurrentWeek.setText("第"+weekth+"周");
             mTVCurrentWeek.setTextColor(Color.WHITE);
+
         }else {
             mTVCurrentWeek.setText("第"+weekth+"周(非本周)");
             mTVCurrentWeek.setTextColor(getContext().getResources().getColor(R.color.not_the_week_text_color));
         }
+
+        if(oneWeekClasses.isContainToday()){
+            LinearLayout father = findL(R.id.classtable_day_week_father_linear);
+            father.getChildAt(DateUtils.getWeekday()-1).setBackground(getContext().getResources().getDrawable(R.drawable.day_week_select_day_shape));
+        }else{
+            LinearLayout father = findL(R.id.classtable_day_week_father_linear);
+            father.getChildAt(DateUtils.getWeekday()-1).setBackground(null);
+        }
     }
+
 
     private void setMonthAndDateText(OneWeekClasses oneWeekClasses) {
         String firstDay[] = oneWeekClasses.getMonthAndDateText(0).split("\\.");

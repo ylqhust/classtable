@@ -11,10 +11,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.ylq.library.R;
-import com.ylq.library.dialog.SelectClassSectionDialog;
-import com.ylq.library.util.ClickGuard;
 import com.ylq.library.dialog.ClasstableBaseDialog;
+import com.ylq.library.dialog.SelectClassSectionDialog;
 import com.ylq.library.dialog.SelectClassWeekDialog;
+import com.ylq.library.model.NewClassDataWrap;
+import com.ylq.library.util.ClickGuard;
+import com.ylq.library.util.Copy;
+import com.ylq.library.util.Store;
+
+import org.json.JSONException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,10 +47,6 @@ public class AddClassPageHolder extends ClasstableBaseHolder implements View.OnC
         super(R.layout.classtable_add_class_page, context);
     }
 
-    public AddClassPageHolder(int layoutId, Context context) {
-        super(layoutId, context);
-    }
-
     @Override
     public void initView() {
         mClassAddress = findE(R.id.classtable_add_class_page_edit_classAddress);
@@ -67,6 +68,8 @@ public class AddClassPageHolder extends ClasstableBaseHolder implements View.OnC
     @Override
     public void unGurad() {
         ClickGuard.unGuard(mRelaOK, mRelaBack, mSelectSection, mSelectWeek, mAddNewTime);
+        for (int i = 0; i < mNewTimeContents.size(); i++)
+            mNewTimeContents.get(i).unGuard();
     }
 
     @Override
@@ -78,14 +81,14 @@ public class AddClassPageHolder extends ClasstableBaseHolder implements View.OnC
             inputEnd();
         } else if (id == R.id.classtable_add_class_page_text_add_new_time) {
             String address = getAddress();
-            mNewTimeContents.add(new NewTimeContent(address,getLastedSelectWeek()));
+            mNewTimeContents.add(new NewTimeContent(address, getLastedSelectWeek()));
             mLinearContainer.addView(mNewTimeContents.get(mNewTimeContents.size() - 1).view);
         } else if (id == R.id.classtable_add_class_page_text_select_section) {
-            dialogIn(new SelectClassSectionDialog(getContext(),mWeekFirstSecSecondSec, new ClasstableBaseDialog.OnOkButtonClick() {
+            dialogIn(new SelectClassSectionDialog(getContext(), mWeekFirstSecSecondSec, new ClasstableBaseDialog.OnOkButtonClick() {
                 @Override
                 public void onOkClick(Object data) {
                     mWeekFirstSecSecondSec = (int[]) data;
-                    setSelectSectionTextString(mSelectSection,mWeekFirstSecSecondSec);
+                    setSelectSectionTextString(mSelectSection, mWeekFirstSecSecondSec);
                     back();
                 }
             }));
@@ -107,27 +110,85 @@ public class AddClassPageHolder extends ClasstableBaseHolder implements View.OnC
      * 用户输入结束。点击了确定后，进入此方法
      */
     private void inputEnd() {
-        //检查是否有课程名
-        String className = mClassName.getText().toString().trim();
-        if(TextUtils.isEmpty(className)){
-            Toast.makeText(getContext(),getContext().getResources().getString(R.string.classtable_class_name_is_null),
-                    Toast.LENGTH_SHORT).show();
+        NewClassDataWrap usefulData = collectData();
+        if (usefulData == null)
             return;
+        try {
+            if (Store.addNewClassData(getContext(), usefulData)) {
+                Toast.makeText(getContext(), getContext().getResources().getString(R.string.classtable_add_class_success), Toast.LENGTH_SHORT).show();
+                back();
+                anotherBack();
+                holderIn(new ClassPageHolder(getContext(), Store.getLocalData(getContext())));
+            } else {
+                Toast.makeText(getContext(), getContext().getResources().getString(R.string.classtable_add_class_failed), Toast.LENGTH_SHORT).show();
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+            Toast.makeText(getContext(), getContext().getResources().getString(R.string.classtable_add_class_failed), Toast.LENGTH_SHORT).show();
         }
 
     }
 
+    private NewClassDataWrap collectData() {
+        NewClassDataWrap dataWrap = new NewClassDataWrap();
+        //检查是否有课程名
+        String className = mClassName.getText().toString().trim();
+        if (TextUtils.isEmpty(className)) {
+            Toast.makeText(getContext(), getContext().getResources().getString(R.string.classtable_class_name_is_null),
+                    Toast.LENGTH_SHORT).show();
+            return null;
+        }
+        dataWrap.className = className;
+        dataWrap.teacherName = mTeacherName.getText().toString().trim();
+        if ((!isAllZero(mWeekChecked)) && notOriginalText(mSelectSection)) {
+            dataWrap.weeks.add(mWeekChecked);
+            dataWrap.sections.add(mWeekFirstSecSecondSec);
+            dataWrap.addresses.add(mClassAddress.getText().toString().trim());
+        }
+
+        for (int i = 0; i < mNewTimeContents.size(); i++) {
+            NewTimeContent content = mNewTimeContents.get(i);
+            if ((!isAllZero(content.weekChecked)) && notOriginalText(content.selectSection)) {
+                dataWrap.weeks.add(content.weekChecked);
+                dataWrap.sections.add(content.weekFirstSecSecondSec);
+                dataWrap.addresses.add(content.address.getText().toString().trim());
+            }
+        }
+
+        if (dataWrap.weeks.size() == 0) {
+            Toast.makeText(getContext(),
+                    getContext().getResources().getString(R.string.classtable_not_exist_useful_time), Toast.LENGTH_LONG).show();
+            return null;
+        }
+        return dataWrap;
+    }
+
+    private boolean notOriginalText(TextView selectSection) {
+        String s = selectSection.getText().toString().trim();
+        return !s.equals(getContext().getResources().getString(R.string.classtable_select_section));
+    }
+
+    private boolean isAllZero(byte[] weekCheck) {
+        if(weekCheck==null)
+            return true;
+        for (int i = 0; i < weekCheck.length; i++)
+            if (weekCheck[i] == 1)
+                return false;
+        return true;
+    }
+
+
     private void setSelectSectionTextString(TextView textView, int[] sections) {
         String text = SelectClassSectionDialog.WEEKS[sections[0]];
-        text+="  ";
-        text+=SelectClassSectionDialog.SECTIONS[sections[1]];
-        if(sections[1]!=sections[2])
-            text+=("  "+SelectClassSectionDialog.TO_SECTIONS[sections[2]]);
+        text += "  ";
+        text += SelectClassSectionDialog.SECTIONS[sections[1]];
+        if (sections[1] != sections[2])
+            text += ("  " + SelectClassSectionDialog.TO_SECTIONS[sections[2]]);
         textView.setText(text);
     }
 
     private void setSelectWeekTextString(TextView textView, byte[] checked) {
-        if (checked == null){
+        if (checked == null) {
             textView.setText(getContext().getResources().getString(R.string.classtable_select_weeks));
             return;
         }
@@ -187,9 +248,9 @@ public class AddClassPageHolder extends ClasstableBaseHolder implements View.OnC
 
     private byte[] getLastedSelectWeek() {
         if (mNewTimeContents.size() > 1)//因为content是先添加到List集合中的，所以要判断是否大于1
-            return mNewTimeContents.get(mNewTimeContents.size() - 2).weekChecked;
+            return Copy.copyByteArray(mNewTimeContents.get(mNewTimeContents.size() - 2).weekChecked);
         else
-            return mWeekChecked;
+            return Copy.copyByteArray(mWeekChecked);
     }
 
     class NewTimeContent implements View.OnClickListener {
@@ -243,17 +304,17 @@ public class AddClassPageHolder extends ClasstableBaseHolder implements View.OnC
                 dialogIn(new SelectClassWeekDialog(getContext(), new ClasstableBaseDialog.OnOkButtonClick() {
                     @Override
                     public void onOkClick(Object data) {
-                        weekChecked = (byte[]) data;
+                        weekChecked = Copy.copyByteArray((byte[]) data);
                         setSelectWeekTextString(selectWeek, weekChecked);
                         back();
                     }
-                },weekChecked));
+                }, weekChecked));
             } else if (v == selectSection) {
-                dialogIn(new SelectClassSectionDialog(getContext(),weekFirstSecSecondSec, new ClasstableBaseDialog.OnOkButtonClick() {
+                dialogIn(new SelectClassSectionDialog(getContext(), weekFirstSecSecondSec, new ClasstableBaseDialog.OnOkButtonClick() {
                     @Override
                     public void onOkClick(Object data) {
-                        weekFirstSecSecondSec = (int[]) data;
-                        setSelectSectionTextString(selectSection,weekFirstSecSecondSec);
+                        weekFirstSecSecondSec = Copy.copyIntArray((int[]) data);
+                        setSelectSectionTextString(selectSection, weekFirstSecSecondSec);
                         back();
                     }
                 }));

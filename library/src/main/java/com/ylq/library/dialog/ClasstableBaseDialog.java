@@ -1,12 +1,14 @@
 package com.ylq.library.dialog;
 
 import android.content.Context;
+import android.hardware.input.InputManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.OvershootInterpolator;
 import android.view.animation.ScaleAnimation;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -69,6 +71,8 @@ public abstract class ClasstableBaseDialog {
     public abstract void leave(long duration, final AnimationEndCallBack callBack);
 
     public void inImpl(long duration,View view){
+        InputMethodManager inputMethodManager = (InputMethodManager) mContext.getSystemService(Context.INPUT_METHOD_SERVICE);
+        inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(),0);
         view.clearAnimation();
         Animation animation = new ScaleAnimation(0.9f,1f,0.9f,1f,Animation.RELATIVE_TO_SELF,0.5f,Animation.RELATIVE_TO_SELF,0.5f);
         animation.setDuration(duration);
