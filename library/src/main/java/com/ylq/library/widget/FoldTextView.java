@@ -21,6 +21,8 @@ public class FoldTextView extends TextView {
     private Drawable mDrawable_YLQ;
     private static final int FOLD_AREA_RIGHT_TOP_COLOR = Color.parseColor("#ffe2ecee");
     private static final int FOLD_AREA_LEFT_BOTTOM_COLOR = Color.parseColor("#50e2ecee");
+    private static final int FOLD_AREA_RIGHT_TOP_COLOR_WHEN_DO_NOT_BELONG_THE_WEEK = Color.GRAY;//为了防止颜色相近而无法看到
+    private static final int FOLD_AREA_LEFT_BOTTOM_COLOR_WHEN_DO_NOT_BELONG_THE_WEEK = Color.LTGRAY;
     private static final int TOTAL_BACKGROUND_COLOR = Color.parseColor("#e0d7ecef");
     private Paint mPaintR;
     private Paint mPaintL;
@@ -109,10 +111,14 @@ public class FoldTextView extends TextView {
             setTextColor(Color.WHITE);
             if(mDrawable_YLQ!=null)
                 setBackground(mDrawable_YLQ);
+            mPaintR.setColor(FOLD_AREA_RIGHT_TOP_COLOR);
+            mPaintL.setColor(FOLD_AREA_LEFT_BOTTOM_COLOR);
         }else {
             mDrawable_YLQ = getBackground();
             setBackground(null);
             setTextColor(Color.parseColor("#99a9a6"));
+            mPaintR.setColor(FOLD_AREA_RIGHT_TOP_COLOR_WHEN_DO_NOT_BELONG_THE_WEEK);
+            mPaintL.setColor(FOLD_AREA_LEFT_BOTTOM_COLOR_WHEN_DO_NOT_BELONG_THE_WEEK);
         }
         invalidate();
     }

@@ -71,6 +71,8 @@ public abstract class ClasstableBaseDialog {
     public abstract void leave(long duration, final AnimationEndCallBack callBack);
 
     public void inImpl(long duration,View view){
+        if(view==null)
+            return;
         InputMethodManager inputMethodManager = (InputMethodManager) mContext.getSystemService(Context.INPUT_METHOD_SERVICE);
         inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(),0);
         view.clearAnimation();
@@ -82,6 +84,10 @@ public abstract class ClasstableBaseDialog {
     }
 
     public void leaveImpl(long duration,final AnimationEndCallBack callBack,View view){
+        if(view==null){
+            callBack.end();
+            return;
+        }
         view.clearAnimation();
         Animation animation = new AlphaAnimation(1,0);
         animation.setDuration(duration);

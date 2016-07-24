@@ -76,21 +76,24 @@ public class AddButtonHolder extends ZeroAlphaDialogHolder implements View.OnCli
     @Override
     public void in(long duration, AnimationEndCallBack callBack) {
         rotationCancleButton(duration,0,45);
-        YTranslate(duration,100,0,mCengke);
-        YTranslate(duration*2,200,0,mFromHub);
-        YTranslate(duration*3,300,0,mAddBM);
+        YTranslate(duration,100,0,mCengke,null);
+        YTranslate(duration*2,200,0,mFromHub,null);
+        YTranslate(duration*3,300,0,mAddBM,null);
     }
 
     @Override
     public void leave(long duration, final AnimationEndCallBack callback){
-        if(callback !=null)
-            callback.end();
+        rotationCancleButton(duration,45,0);
+        YTranslate(duration,0,100,mCengke,null);
+        YTranslate(duration*2,0,200,mFromHub,null);
+        YTranslate(duration*3,0,300,mAddBM,callback);
     }
 
 
 
 
     private void rotationCancleButton(long duration, int fromD, int toD) {
+        mCancle.clearAnimation();
         Animation rota= new RotateAnimation(fromD, toD, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
         rota.setDuration(duration);
         rota.setFillAfter(true);
@@ -99,11 +102,29 @@ public class AddButtonHolder extends ZeroAlphaDialogHolder implements View.OnCli
         rota.start();
     }
 
-    private void YTranslate(long duration,int fromYD,int toYD,View v){
+    private void YTranslate(long duration, int fromYD, int toYD, View v, final AnimationEndCallBack callBack){
+        v.clearAnimation();
         Animation animation = new TranslateAnimation(0,0,fromYD,toYD);
         animation.setDuration(duration);
         animation.setFillAfter(true);
         animation.setInterpolator(new OvershootInterpolator());
+        animation.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                if(callBack!=null)
+                    callBack.end();
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
         v.setAnimation(animation);
         animation.start();
     }

@@ -26,30 +26,33 @@ public class ClassViewPagerAdapter2 extends PagerAdapter {
     private AllClasses mAllClasses;
     private Context mContext;
     private boolean lastedShowAll;
+    private ClassBoxLayout.OnItemClickListener mListener;
 
-    public ClassViewPagerAdapter2(final Context context,@NonNull AllClasses allClasses){
+    public ClassViewPagerAdapter2(final Context context, @NonNull AllClasses allClasses, ClassBoxLayout.OnItemClickListener listener) {
         LayoutInflater inflater = LayoutInflater.from(context);
         mAllClasses = allClasses;
         mContext = context;
         lastedShowAll = Store.isShowAll(context);
-
+        mListener = listener;
         for (int i = 1; i <= allClasses.getAllWeekCount(); i++) {
             ClassBoxLayout view = new ClassBoxLayout(context);
             view.setLayoutParams(new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
             view.setAdapter(new ClassDataAdapter(context, allClasses.getOneWeek(i), getAfterTheWeek(i), new ClassBoxLayout.OnItemClickListener() {
                 @Override
                 public void onItemClick(@NonNull ClassUnit topLayer, List<ClassUnit> bottomLayer) {
-                    Toast.makeText(context,topLayer.mClassName+"@"+topLayer.mClassAddress,Toast.LENGTH_LONG).show();
+                    if(mListener!=null)
+                        mListener.onItemClick(topLayer,bottomLayer);
                 }
             }));
             mListViews.add(view);
         }
+
     }
 
     private List<OneWeekClasses> getAfterTheWeek(int i) {
-        if(!Store.isShowAll(mContext))
+        if (!Store.isShowAll(mContext))
             return null;
-        return mAllClasses.getData().subList(i,mAllClasses.getData().size());
+        return mAllClasses.getData().subList(i, mAllClasses.getData().size());
     }
 
     @Override
@@ -59,7 +62,7 @@ public class ClassViewPagerAdapter2 extends PagerAdapter {
 
     @Override
     public boolean isViewFromObject(View view, Object object) {
-        return view==object;
+        return view == object;
     }
 
     @Override
@@ -74,8 +77,8 @@ public class ClassViewPagerAdapter2 extends PagerAdapter {
         return mListViews.get(position);
     }
 
-    public void finish(){
-        for(int i=0;i<mListViews.size();i++)
+    public void finish() {
+        for (int i = 0; i < mListViews.size(); i++)
             mListViews.get(i).finish();
     }
 
@@ -83,15 +86,16 @@ public class ClassViewPagerAdapter2 extends PagerAdapter {
      * 检查显示全部的设置是否改变了
      */
     public void checkIfShowAll() {
-        if(lastedShowAll==Store.isShowAll(mContext))
+        if (lastedShowAll == Store.isShowAll(mContext))
             return;
         lastedShowAll = Store.isShowAll(mContext);
         for (int i = 1; i <= mAllClasses.getAllWeekCount(); i++) {
-            ClassBoxLayout view = mListViews.get(i-1);
+            ClassBoxLayout view = mListViews.get(i - 1);
             view.setAdapter(new ClassDataAdapter(mContext, mAllClasses.getOneWeek(i), getAfterTheWeek(i), new ClassBoxLayout.OnItemClickListener() {
                 @Override
                 public void onItemClick(@NonNull ClassUnit topLayer, List<ClassUnit> bottomLayer) {
-                    Toast.makeText(mContext,topLayer.mClassName+"@"+topLayer.mClassAddress,Toast.LENGTH_LONG).show();
+                    if(mListener!=null)
+                        mListener.onItemClick(topLayer,bottomLayer);
                 }
             }));
         }

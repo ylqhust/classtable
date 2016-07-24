@@ -72,7 +72,8 @@ public class ClassDataAdapter extends ClassBoxLayout.ClassBoxAdapter {
                         ClassUnit topUnit = mMap2.get(topLayer);
                         if (!mMap.containsKey(topUnit))
                             mMap.put(topUnit, new ArrayList<ClassUnit>());
-                        mMap.get(topUnit).add(unit);
+                        if(!MMapContainUnit(mMap.get(topUnit),unit))
+                            mMap.get(topUnit).add(unit);
                     }
                 }
             }
@@ -98,6 +99,22 @@ public class ClassDataAdapter extends ClassBoxLayout.ClassBoxAdapter {
             mParams.add(params);
             mCount++;
         }
+    }
+
+    /**
+     * 判断是否包含只通过课程名和课程地址是否相同判断
+     * @param classUnits
+     * @param unit
+     * @return
+     */
+    private boolean MMapContainUnit(List<ClassUnit> classUnits, ClassUnit unit) {
+        String s = unit.mClassName+"@"+unit.mClassAddress;
+        for(int i=0;i<classUnits.size();i++){
+            String s1 = classUnits.get(i).mClassName+"@"+classUnits.get(i).mClassAddress;
+            if(s.equals(s1))
+                return true;
+        }
+        return false;
     }
 
     @Override

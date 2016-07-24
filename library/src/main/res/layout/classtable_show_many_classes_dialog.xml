@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/classtable_show_many_classes_rela"
+    android:layout_width="match_parent"
+    android:background="@color/transparent"
+    android:layout_height="match_parent">
+    <com.ylq.library.widget.HorDragLayout
+        android:id="@+id/classtable_show_many_classes_dialog_hordraglayout"
+        android:layout_width="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_height="150dp"/>
+</RelativeLayout>
+
+

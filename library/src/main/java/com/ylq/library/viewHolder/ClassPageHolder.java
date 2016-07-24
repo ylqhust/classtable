@@ -2,6 +2,7 @@ package com.ylq.library.viewHolder;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -9,21 +10,29 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.ylq.library.R;
 import com.ylq.library.adapter.ClassViewPagerAdapter2;
 import com.ylq.library.adapter.SelectWeekAdapter;
+import com.ylq.library.adapter.ShowManyClassesAdapter;
+import com.ylq.library.dialog.ShowManyClassesDialog;
 import com.ylq.library.model.AllClasses;
+import com.ylq.library.model.ClassUnit;
 import com.ylq.library.model.Common;
 import com.ylq.library.model.OneWeekClasses;
 import com.ylq.library.util.ClickGuard;
 import com.ylq.library.util.DateUtils;
+import com.ylq.library.widget.ClassBoxLayout;
+
+import java.util.List;
+
 
 /**
  * 课程表首页的Holder
  * Created by apple on 16/7/11.
  */
-public class ClassPageHolder extends ClasstableBaseHolder implements View.OnClickListener {
+public class ClassPageHolder extends ClasstableBaseHolder implements View.OnClickListener, ClassBoxLayout.OnItemClickListener,ShowManyClassesAdapter.onItemClickListener {
 
     private RelativeLayout mRelaBack;//返回按钮
     private RelativeLayout mRelaWeek;//选择当前周的按钮
@@ -42,7 +51,7 @@ public class ClassPageHolder extends ClasstableBaseHolder implements View.OnClic
         mAllClasses.addEmptyWeekUntil24();
         mCurrentWeek = getCurrentWeek();
         mSelectWeek = mCurrentWeek;
-        mAdapter = new ClassViewPagerAdapter2(getContext(),allClasses);
+        mAdapter = new ClassViewPagerAdapter2(getContext(),allClasses,this);
         mViewPager.setAdapter(mAdapter);
         mViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -200,5 +209,15 @@ public class ClassPageHolder extends ClasstableBaseHolder implements View.OnClic
         findT(R.id.classtable_left_time_tv_10).setText("19:20");
         findT(R.id.classtable_left_time_tv_11).setText("20:15");
         findT(R.id.classtable_left_time_tv_12).setText("21:05");
+    }
+
+    @Override
+    public void onItemClick(@NonNull ClassUnit topLayer, List<ClassUnit> bottomLayer) {
+        dialogIn(new ShowManyClassesDialog(getContext(),topLayer,bottomLayer,this));
+    }
+
+    @Override
+    public void onItemClick(String s) {
+        Toast.makeText(getContext(),s,Toast.LENGTH_SHORT).show();
     }
 }

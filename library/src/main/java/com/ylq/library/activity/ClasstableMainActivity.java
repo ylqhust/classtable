@@ -24,7 +24,7 @@ public class ClasstableMainActivity extends ClasstableBaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.classtable_page_container);
         fitSystemWindow();
-      //  fake();
+       // fake();
         if(Store.isNotification(this))
             ClasstableNotification.start(this);
         if(!Store.isLocalHaveData(this))
@@ -39,7 +39,7 @@ public class ClasstableMainActivity extends ClasstableBaseActivity {
     }
 
     /**
-     * hub系统会崩溃，就是用这个方法设置一些测试数据
+     * hub系统会崩溃，就用这个方法设置一些测试数据
      */
     private void fake() {
         SharedPreferences sharedPreferences = getSharedPreferences(Store.SH_NAME,MODE_PRIVATE);
