@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:background="@color/transparent"
     android:layout_height="match_parent">
-    <com.ylq.library.widget.HorDragLayout
+    <com.ylq.library.classtable.widget.HorDragLayout
         android:id="@+id/classtable_show_many_classes_dialog_hordraglayout"
         android:layout_width="wrap_content"
         android:layout_centerVertical="true"

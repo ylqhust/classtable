@@ -22,7 +22,7 @@
             android:layout_marginTop="16dp"
             android:text="@string/classtable_select_week" />
 
-        <com.ylq.library.widget.SelectWeekView
+        <com.ylq.library.classtable.widget.SelectWeekView
             android:id="@+id/classtable_select_class_dialog_selectweekview"
             android:background="@color/white"
             android:layout_width="match_parent"

@@ -9,7 +9,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:layout_marginTop="@dimen/classtable_class_page_toolbar_height">
-        <com.ylq.library.widget.SelectWeekLayout
+        <com.ylq.library.classtable.widget.SelectWeekLayout
             android:id="@+id/classtable_select_week_seleclayout"
             android:background="@color/alpha_white"
             android:layout_width="@dimen/classtable_dialog_select_week_listview_width"
@@ -23,7 +23,7 @@
                 android:scrollbars="none"
                 android:paddingBottom="10dp"
                 android:layout_centerHorizontal="true"/>
-        </com.ylq.library.widget.SelectWeekLayout>
+        </com.ylq.library.classtable.widget.SelectWeekLayout>
 
     </LinearLayout>
 

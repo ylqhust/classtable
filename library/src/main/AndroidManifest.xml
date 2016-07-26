@@ -6,8 +6,8 @@
         android:allowBackup="true"
         android:label="@string/app_name"
         android:supportsRtl="true">
-        <activity android:name=".activity.ClasstableMainActivity"></activity>
-        <receiver android:name=".ClasstableNotification$AlarmReceiver">
+        <activity android:name=".classtable.ClasstableMainActivity"></activity>
+        <receiver android:name=".classtable.ClasstableNotification$AlarmReceiver">
             <intent-filter>
                 <action android:name="com.ylq.classtalbe.notification"/>
             </intent-filter>

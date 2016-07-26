@@ -26,7 +26,7 @@
             android:text="@string/classtable_another_time"
             android:textColor="@android:color/black"
             android:textSize="12sp" />
-        <com.ylq.library.widget.DeleteCircle
+        <com.ylq.library.classtable.widget.DeleteCircle
             android:id="@+id/classtable_add_class_page_child_text_delete"
             android:layout_width="30dp"
             android:layout_height="30dp"
