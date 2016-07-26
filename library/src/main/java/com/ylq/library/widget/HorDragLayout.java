@@ -24,7 +24,7 @@ public class HorDragLayout extends HorizontalScrollView {
     private ViewDragHelper mDragHelper;
     private LinearLayout mLinearContainer;
     private HorDragAdapter mAdapter;
-    private int mSuggestPosition=0;
+    private int mSuggestPosition = 0;
     private int mLeft;
 
     public HorDragLayout(Context context) {
@@ -50,7 +50,7 @@ public class HorDragLayout extends HorizontalScrollView {
             @Override
             public int clampViewPositionHorizontal(View child, int left, int dx) {
                 mSuggestPosition = getPosition(left);
-                mLeft=left-dx;
+                mLeft = left - dx;
                 if (mAdapter != null) {
                     mAdapter.animation(left);
                     if (left + mAdapter.getYouThinkMidLineToTheViewLeft(0) > (HALF_SCREEN_WIDTH))
@@ -60,7 +60,6 @@ public class HorDragLayout extends HorizontalScrollView {
                 }
                 return left;
             }
-
 
 
             @Override
@@ -137,21 +136,29 @@ public class HorDragLayout extends HorizontalScrollView {
         return true;
     }
 
-    int moveCount;
+    int xDown, yDown, moveCount;
+
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         mDragHelper.processTouchEvent(event);
-        event.setLocation(event.getX()-mLeft-getPaddingLeft(),event.getY()-getPaddingTop());//修正x轴方向上的坐标
+        event.setLocation(event.getX() - mLeft - getPaddingLeft(), event.getY() - getPaddingTop());//修正x轴方向上的坐标
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
+                xDown = (int) event.getX();
+                yDown = (int) event.getY();
                 mLinearContainer.dispatchTouchEvent(event);
-                moveCount=0;
+                moveCount = 0;
                 break;
             case MotionEvent.ACTION_MOVE:
                 moveCount++;
+                System.out.println(moveCount);
                 break;
             case MotionEvent.ACTION_UP:
-                if(moveCount<=5)//移动数量不大于5才认为是一次点击事件
+                int xUp = (int) event.getX();
+                int yUp = (int) event.getY();
+                int deltaX = Math.abs(xUp-xDown);
+                int deltaY = Math.abs(yUp-yDown);
+                if (moveCount <= 5 && deltaX<=2 && deltaY <=2)//移动数量不大于5,x，y轴方向上的移动改变小于等于2才认为是一次点击事件
                     mLinearContainer.dispatchTouchEvent(event);
                 break;
         }

@@ -182,7 +182,7 @@ public class OneWeekClasses {
      * @param sections
      * @return
      */
-    public static OneWeekClasses getANewWeek(String className, List<String> addresses, @IntRange(from = 1, to = 24) int weekth, List<int[]> sections, int colorIndex) {
+    public static OneWeekClasses getANewWeek(String className, List<String> addresses,String teacher, @IntRange(from = 1, to = 24) int weekth, List<int[]> sections, int colorIndex) {
         OneWeekClasses oneWeek = new OneWeekClasses();
         oneWeek.mSeason = Store.getSeason(weekth);
         oneWeek.mMonth = Store.getMonth(weekth);
@@ -204,7 +204,7 @@ public class OneWeekClasses {
                     ad.remove(i);
                     i--;
                 }
-            oneWeek.add(OneDayClasses.getANewDay(className,sa,weekth,ss,colorIndex));
+            oneWeek.add(OneDayClasses.getANewDay(className,sa,teacher,weekth,ss,colorIndex));
         }
         return oneWeek;
     }
@@ -259,6 +259,11 @@ public class OneWeekClasses {
         if(thisMonth>=1 && thisMonth<=2 && thatMonth>=8 && thatMonth<=12)
             return false;
         return thisMonth<thatMonth;
+    }
+
+    public void deleteByClassNameAndAddress(String className, String address) {
+        for(int i=0;i<mOneDayClasses.size();i++)
+            mOneDayClasses.get(i).deleteByClassNameAndAddress(className,address);
     }
 }
 

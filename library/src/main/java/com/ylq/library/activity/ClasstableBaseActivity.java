@@ -27,6 +27,7 @@ public class ClasstableBaseActivity extends AppCompatActivity {
     final private static int DEFAULT_DURATION = 200;
     private Stack<ClasstableBaseHolder> mStack = new Stack<>();
     private ClasstableBaseDialog mDialog;
+    private boolean mShowing = true;
 
     @Override
     protected void onCreate(Bundle saveInstance) {
@@ -61,11 +62,13 @@ public class ClasstableBaseActivity extends AppCompatActivity {
      */
     public void fitSystemWindow() {
         getSupportActionBar().hide();
-        int statusBarHeight = getStatusBarHeight(this);
-        View child = getActivityView();
-        ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) child.getLayoutParams();
-        marginLayoutParams.topMargin = statusBarHeight;
-        child.setLayoutParams(marginLayoutParams);
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT){
+            int statusBarHeight = getStatusBarHeight(this);
+            View child = getActivityView();
+            ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) child.getLayoutParams();
+            marginLayoutParams.topMargin = statusBarHeight;
+            child.setLayoutParams(marginLayoutParams);
+        }
     }
 
     /**
@@ -90,8 +93,21 @@ public class ClasstableBaseActivity extends AppCompatActivity {
         }
         return statusBarHeight;
     }
+    @Override
+    public void onStart(){
+        super.onStart();
+        mShowing = true;
+    }
+
+    @Override
+    public void onStop(){
+        super.onStop();
+        mShowing = false;
+    }
 
     public void holderIn(ClasstableBaseHolder holder) {
+        if(!mShowing)
+            return;
         if (mStack.size() == 0) {
             mStack.push(holder);
             getContainer().removeAllViews();
@@ -113,6 +129,8 @@ public class ClasstableBaseActivity extends AppCompatActivity {
     }
 
     public void dialogIn(ClasstableBaseDialog dialog){
+        if(!mShowing)
+            return;
         if(mDialog!=null)
             throw new IllegalStateException("同一时间只能有一个Dialog");
         mDialog = dialog;

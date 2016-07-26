@@ -83,10 +83,12 @@ public class AddButtonHolder extends ZeroAlphaDialogHolder implements View.OnCli
 
     @Override
     public void leave(long duration, final AnimationEndCallBack callback){
-        rotationCancleButton(duration,45,0);
-        YTranslate(duration,0,100,mCengke,null);
-        YTranslate(duration*2,0,200,mFromHub,null);
-        YTranslate(duration*3,0,300,mAddBM,callback);
+        if(callback!=null)
+            callback.end();
+//        rotationCancleButton(duration,45,0);
+//        YTranslate(duration,0,100,mCengke,null);
+//        YTranslate(duration*2,0,200,mFromHub,null);
+//        YTranslate(duration*3,0,300,mAddBM,callback);
     }
 
 

@@ -36,7 +36,7 @@ public class AddClassPageHolder extends ClasstableBaseHolder implements View.OnC
     private TextView mSelectSection;
     private RelativeLayout mRelaBack;
     private RelativeLayout mRelaOK;
-    private TextView mAddNewTime;//添加新的时间段
+    private RelativeLayout mAddNewTime;//添加新的时间段
     private LinearLayout mLinearContainer;
     private List<NewTimeContent> mNewTimeContents = new ArrayList<>();
     private byte[] mWeekChecked;
@@ -56,7 +56,7 @@ public class AddClassPageHolder extends ClasstableBaseHolder implements View.OnC
         mClassName = findE(R.id.classtable_add_class_page_edit_className);
         mRelaBack = findR(R.id.classtable_toolbar_rela_back);
         mRelaOK = findR(R.id.classtable_toolbar_ok_rela);
-        mAddNewTime = findT(R.id.classtable_add_class_page_text_add_new_time);
+        mAddNewTime = findR(R.id.classtable_add_class_page_rela_add_new_time);
         mLinearContainer = findL(R.id.classtable_add_class_page_linear_child_container);
     }
 
@@ -79,7 +79,7 @@ public class AddClassPageHolder extends ClasstableBaseHolder implements View.OnC
             back();
         else if (id == R.id.classtable_toolbar_ok_rela) {
             inputEnd();
-        } else if (id == R.id.classtable_add_class_page_text_add_new_time) {
+        } else if (id == R.id.classtable_add_class_page_rela_add_new_time) {
             String address = getAddress();
             mNewTimeContents.add(new NewTimeContent(address, getLastedSelectWeek()));
             mLinearContainer.addView(mNewTimeContents.get(mNewTimeContents.size() - 1).view);
@@ -140,10 +140,15 @@ public class AddClassPageHolder extends ClasstableBaseHolder implements View.OnC
         }
         dataWrap.className = className;
         dataWrap.teacherName = mTeacherName.getText().toString().trim();
+        if(dataWrap.teacherName==null || dataWrap.teacherName.length()==0)
+            dataWrap.teacherName = "待定";
         if ((!isAllZero(mWeekChecked)) && notOriginalText(mSelectSection)) {
             dataWrap.weeks.add(mWeekChecked);
             dataWrap.sections.add(mWeekFirstSecSecondSec);
-            dataWrap.addresses.add(mClassAddress.getText().toString().trim());
+            String adr = mClassAddress.getText().toString().trim();
+            if(adr==null || adr.length()==0)
+                adr = "未知";
+            dataWrap.addresses.add(adr);
         }
 
         for (int i = 0; i < mNewTimeContents.size(); i++) {
@@ -151,7 +156,10 @@ public class AddClassPageHolder extends ClasstableBaseHolder implements View.OnC
             if ((!isAllZero(content.weekChecked)) && notOriginalText(content.selectSection)) {
                 dataWrap.weeks.add(content.weekChecked);
                 dataWrap.sections.add(content.weekFirstSecSecondSec);
-                dataWrap.addresses.add(content.address.getText().toString().trim());
+                String adr = content.address.getText().toString().trim();
+                if(adr == null || adr.length()==0)
+                    adr = "未知";
+                dataWrap.addresses.add(adr);
             }
         }
 

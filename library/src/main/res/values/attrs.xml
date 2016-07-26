@@ -3,4 +3,7 @@
     <declare-styleable name="TimeIndicator">
         <attr name="timeIndicatorColor" format="reference"/>
     </declare-styleable>
+    <declare-styleable name="DeleteCircle">
+        <attr name="deleteCirclecolor" format="reference"/>
+    </declare-styleable>
 </resources>

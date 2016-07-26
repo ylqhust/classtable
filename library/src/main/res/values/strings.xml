@@ -35,6 +35,12 @@
     <string name="classtable_not_exist_useful_time">没有一个可用的时间-_-//</string>
     <string name="classtable_add_class_success">添加成功!</string>
     <string name="classtable_add_class_failed">添加失败，没内存了吧-_-\\\\</string>
+    <string name="classtable_class_detail_info">课程信息</string>
+    <string name="classtable_teacher">老师</string>
+    <string name="classtable_classname">课程名称</string>
+    <string name="classtable_teacher_name">任课教师</string>
+    <string name="classtable_go_to_class_time">上课时间</string>
+    <string name="input_class_address">输入上课地点</string>
 
     <string-array name="ing_login_hub">
         <item>正在登陆HUB.</item>

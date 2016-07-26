@@ -84,6 +84,10 @@ public abstract class ClasstableBaseDialog {
     }
 
     public void leaveImpl(long duration,final AnimationEndCallBack callBack,View view){
+        if(callBack!=null){
+            callBack.end();
+            return;
+        }
         if(view==null){
             callBack.end();
             return;

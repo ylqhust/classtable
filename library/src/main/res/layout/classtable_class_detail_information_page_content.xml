@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android">
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp">
+        <View
+            android:id="@+id/view1"
+            android:layout_width="3dp"
+            android:layout_height="20dp"
+            android:layout_marginLeft="8dp"
+            android:background="@color/classtable_class_detail_information_page_color_view1" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="8dp"
+            android:layout_toRightOf="@id/view1"
+            android:text="@string/classtable_classname"
+            android:textColor="@android:color/black"
+            android:textSize="12sp" />
+    </RelativeLayout>
+    <TextView
+        android:id="@+id/classtable_class_detail_information_page_content_text1"
+        android:text="数电"
+        style="@style/classtable_class_detail_information_text_style"
+        />
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp">
+        <View
+            android:id="@+id/view2"
+            android:layout_width="3dp"
+            android:layout_height="20dp"
+            android:layout_marginLeft="8dp"
+            android:background="@color/classtable_class_detail_information_page_color_view2" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="8dp"
+            android:layout_toRightOf="@id/view2"
+            android:text="@string/classtable_teacher_name"
+            android:textColor="@android:color/black"
+            android:textSize="12sp" />
+    </RelativeLayout>
+    <TextView
+        android:id="@+id/classtable_class_detail_information_page_content_text2"
+        android:text="待定"
+        style="@style/classtable_class_detail_information_text_style"
+        />
+</merge>

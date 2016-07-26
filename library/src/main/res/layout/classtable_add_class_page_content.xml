@@ -1,43 +1,155 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merge xmlns:android="http://schemas.android.com/apk/res/android">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp">
+        <View
+            android:id="@+id/view1"
+            android:layout_width="3dp"
+            android:layout_height="20dp"
+            android:layout_marginLeft="8dp"
+            android:background="@color/classtable_class_detail_information_page_color_view1" />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="8dp"
+            android:layout_toRightOf="@id/view1"
+            android:text="@string/classtable_classname"
+            android:textColor="@android:color/black"
+            android:textSize="12sp" />
+    </RelativeLayout>
     <EditText
         android:id="@+id/classtable_add_class_page_edit_className"
-        style="@style/add_class_page_edittext_style"
-        android:hint="课程名称" />
+        style="@style/classtable_class_detail_information_text_style"
+        />
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp">
+        <View
+            android:id="@+id/view2"
+            android:layout_width="3dp"
+            android:layout_height="20dp"
+            android:layout_marginLeft="8dp"
+            android:background="@color/classtable_class_detail_information_page_color_view2" />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="8dp"
+            android:layout_toRightOf="@id/view2"
+            android:text="@string/classtable_teacher_name"
+            android:textColor="@android:color/black"
+            android:textSize="12sp" />
+    </RelativeLayout>
     <EditText
         android:id="@+id/classtable_add_class_page_edit_teacherName"
-        style="@style/add_class_page_edittext_style"
-        android:hint="老师" />
+        style="@style/classtable_class_detail_information_text_style"
+        />
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp">
+        <View
+            android:id="@+id/view3"
+            android:layout_width="3dp"
+            android:layout_height="20dp"
+            android:layout_marginLeft="8dp"
+            android:background="@color/classtable_class_detail_information_page_color_view3" />
 
-    <TextView
-        android:id="@+id/classtable_add_class_page_text_select_week"
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="8dp"
+            android:layout_toRightOf="@id/view3"
+            android:text="@string/classtable_go_to_class_time"
+            android:textColor="@android:color/black"
+            android:textSize="12sp" />
+    </RelativeLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
         android:layout_marginTop="8dp"
-        android:background="@drawable/add_button_page_text_selector"
-        android:gravity="center"
-        android:text="@string/classtable_select_weeks"
-        android:textColor="@color/white" />
+        android:background="@drawable/class_detail_information_linear">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="10dp"
+                android:text="周次"/>
+            <TextView
+                android:id="@+id/classtable_add_class_page_text_select_week"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/classtable_select_weeks"/>
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/classtable_class_detail_information_page_linear_stroke"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="4dp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="10dp"
+                android:text="节次"/>
+            <TextView
+                android:id="@+id/classtable_add_class_page_text_select_section"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/classtable_select_section"/>
+        </LinearLayout>
 
-    <TextView
-        android:id="@+id/classtable_add_class_page_text_select_section"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/add_button_page_text_selector"
-        android:gravity="center"
-        android:text="@string/classtable_select_section"
-        android:textColor="@color/white" />
-
-    <EditText
-        android:id="@+id/classtable_add_class_page_edit_classAddress"
-        style="@style/add_class_page_edittext_style"
-        android:hint="@string/classtable_class_address" />
-</merge>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/classtable_class_detail_information_page_linear_stroke"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="4dp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_gravity="center_vertical"
+                android:text="地点"/>
+            <EditText
+                android:id="@+id/classtable_add_class_page_edit_classAddress"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="@string/input_class_address"
+                android:textSize="14sp"
+                android:background="@drawable/classtable_null"
+                android:singleLine="true"
+                android:gravity="center"/>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
 

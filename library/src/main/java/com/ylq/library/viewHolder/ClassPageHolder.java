@@ -10,7 +10,6 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.ylq.library.R;
 import com.ylq.library.adapter.ClassViewPagerAdapter2;
@@ -32,7 +31,7 @@ import java.util.List;
  * 课程表首页的Holder
  * Created by apple on 16/7/11.
  */
-public class ClassPageHolder extends ClasstableBaseHolder implements View.OnClickListener, ClassBoxLayout.OnItemClickListener,ShowManyClassesAdapter.onItemClickListener {
+public class ClassPageHolder extends ClasstableBaseHolder implements View.OnClickListener, ClassBoxLayout.OnItemClickListener, ShowManyClassesAdapter.onItemClickListener {
 
     private RelativeLayout mRelaBack;//返回按钮
     private RelativeLayout mRelaWeek;//选择当前周的按钮
@@ -51,7 +50,7 @@ public class ClassPageHolder extends ClasstableBaseHolder implements View.OnClic
         mAllClasses.addEmptyWeekUntil24();
         mCurrentWeek = getCurrentWeek();
         mSelectWeek = mCurrentWeek;
-        mAdapter = new ClassViewPagerAdapter2(getContext(),allClasses,this);
+        mAdapter = new ClassViewPagerAdapter2(getContext(), allClasses, this);
         mViewPager.setAdapter(mAdapter);
         mViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -61,7 +60,7 @@ public class ClassPageHolder extends ClasstableBaseHolder implements View.OnClic
 
             @Override
             public void onPageSelected(int position) {
-                setPageData(position+1);
+                setPageData(position + 1);
             }
 
             @Override
@@ -71,56 +70,56 @@ public class ClassPageHolder extends ClasstableBaseHolder implements View.OnClic
         });
 
         setPageData(mCurrentWeek);
-        mViewPager.setCurrentItem(mCurrentWeek-1,true);
+        mViewPager.setCurrentItem(mCurrentWeek - 1, true);
     }
 
     @Override
-    public void show(long duration,AnimationEndCallBack callBack){
-        super.show(duration,callBack);
-        if(mAdapter!=null && mAdapter instanceof ClassViewPagerAdapter2)
-            ((ClassViewPagerAdapter2)mAdapter).checkIfShowAll();
-
+    public void show(long duration, AnimationEndCallBack callBack) {
+        super.show(duration, callBack);
+        if (mAdapter != null && mAdapter instanceof ClassViewPagerAdapter2)
+            ((ClassViewPagerAdapter2) mAdapter).checkIfShowAll();
     }
+
     private void setPageData(int weekth) {
         mSelectWeek = weekth;
         OneWeekClasses oneWeekClasses = mAllClasses.getOneWeek(weekth);
-        if(oneWeekClasses == null)
-            throw new IllegalArgumentException("ClassPageHolder->setPageData->weekth is "+weekth);
-        if(oneWeekClasses.getSEASON()== Common.SEASON.SUMMER)
+        if (oneWeekClasses == null)
+            throw new IllegalArgumentException("ClassPageHolder->setPageData->weekth is " + weekth);
+        if (oneWeekClasses.getSEASON() == Common.SEASON.SUMMER)
             useSummer();
         else
             useWinter();
         setMonthAndDateText(oneWeekClasses);
-        if(weekth==mCurrentWeek){
-            mTVCurrentWeek.setText("第"+weekth+"周");
+        if (weekth == mCurrentWeek) {
+            mTVCurrentWeek.setText("第" + weekth + "周");
             mTVCurrentWeek.setTextColor(Color.WHITE);
 
-        }else {
-            mTVCurrentWeek.setText("第"+weekth+"周(非本周)");
+        } else {
+            mTVCurrentWeek.setText("第" + weekth + "周(非本周)");
             mTVCurrentWeek.setTextColor(getContext().getResources().getColor(R.color.not_the_week_text_color));
         }
 
-        if(oneWeekClasses.isContainToday()){
+        if (oneWeekClasses.isContainToday()) {
             LinearLayout father = findL(R.id.classtable_day_week_father_linear);
-            father.getChildAt(DateUtils.getWeekday()-1).setBackground(getContext().getResources().getDrawable(R.drawable.day_week_select_day_shape));
-        }else{
+            father.getChildAt(DateUtils.getWeekday() - 1).setBackground(getContext().getResources().getDrawable(R.drawable.day_week_select_day_shape));
+        } else {
             LinearLayout father = findL(R.id.classtable_day_week_father_linear);
-            father.getChildAt(DateUtils.getWeekday()-1).setBackground(null);
+            father.getChildAt(DateUtils.getWeekday() - 1).setBackground(null);
         }
     }
 
 
     private void setMonthAndDateText(OneWeekClasses oneWeekClasses) {
         String firstDay[] = oneWeekClasses.getMonthAndDateText(0).split("\\.");
-        int[] tvId = {R.id.classtable_day_week_tv_day1,R.id.classtable_day_week_tv_day2,R.id.classtable_day_week_tv_day3,R.id.classtable_day_week_tv_day4,
-        R.id.classtable_day_week_tv_day5,R.id.classtable_day_week_tv_day6,R.id.classtable_day_week_tv_day7};
-        findT(R.id.classtable_day_week_tv_month).setText(firstDay[0]+"");
-        for(int i=0;i<7;i++){
-            String[] monthDay  = oneWeekClasses.getMonthAndDateText(i).split("\\.");
-            if(monthDay[0].equals(firstDay[0]))
+        int[] tvId = {R.id.classtable_day_week_tv_day1, R.id.classtable_day_week_tv_day2, R.id.classtable_day_week_tv_day3, R.id.classtable_day_week_tv_day4,
+                R.id.classtable_day_week_tv_day5, R.id.classtable_day_week_tv_day6, R.id.classtable_day_week_tv_day7};
+        findT(R.id.classtable_day_week_tv_month).setText(firstDay[0] + "");
+        for (int i = 0; i < 7; i++) {
+            String[] monthDay = oneWeekClasses.getMonthAndDateText(i).split("\\.");
+            if (monthDay[0].equals(firstDay[0]))
                 findT(tvId[i]).setText(monthDay[1]);
-            else{
-                findT(tvId[i]).setText(monthDay[0]+"月");
+            else {
+                findT(tvId[i]).setText(monthDay[0] + "月");
                 firstDay[0] = monthDay[0];
             }
         }
@@ -128,6 +127,7 @@ public class ClassPageHolder extends ClasstableBaseHolder implements View.OnClic
 
     /**
      * 根据mAllClasses中的数据获取当前周
+     *
      * @return
      */
     private int getCurrentWeek() {
@@ -151,35 +151,35 @@ public class ClassPageHolder extends ClasstableBaseHolder implements View.OnClic
 
     @Override
     public void onClick(View v) {
-        
+
         final int id = v.getId();
         if (id == R.id.classtable_toolbar_rela_back) {
             back();
         } else if (id == R.id.classtable_toolbar_setting_rela) {
             holderIn(new SettingPageViewHolder(getContext()));
         } else if (id == R.id.classtable_toolbar_week_rela) {
-            holderIn(new SelectWeekViewHolder(getContext(), mAllClasses.getAllWeekCount(), mCurrentWeek, mSelectWeek,new SelectWeekAdapter.SelectWeekCallback() {
+            holderIn(new SelectWeekViewHolder(getContext(), mAllClasses.getAllWeekCount(), mCurrentWeek, mSelectWeek, new SelectWeekAdapter.SelectWeekCallback() {
                 @Override
                 public void selectWeek(int weekIndex) {
                     setPageData(weekIndex);
-                    mViewPager.setCurrentItem(weekIndex-1,true);
+                    mViewPager.setCurrentItem(weekIndex - 1, true);
                 }
             }));
-        }else if(id==R.id.classtable_class_page_float_button){
+        } else if (id == R.id.classtable_class_page_float_button) {
             holderIn(new AddButtonHolder(getContext()));
         }
     }
 
     @Override
     public void Guard() {
-        ClickGuard.guard(this,mAddButton,mRelaBack,mRelaWeek,mRelaSetting);
+        ClickGuard.guard(this, mAddButton, mRelaBack, mRelaWeek, mRelaSetting);
     }
 
     @Override
     public void unGurad() {
-        ClickGuard.unGuard(mRelaBack,mRelaWeek,mRelaSetting,mAddButton);
-        if(mAdapter!=null && mAdapter instanceof ClassViewPagerAdapter2)
-            ((ClassViewPagerAdapter2)mAdapter).finish();
+        ClickGuard.unGuard(mRelaBack, mRelaWeek, mRelaSetting, mAddButton);
+        if (mAdapter != null && mAdapter instanceof ClassViewPagerAdapter2)
+            ((ClassViewPagerAdapter2) mAdapter).finish();
     }
 
 
@@ -213,11 +213,14 @@ public class ClassPageHolder extends ClasstableBaseHolder implements View.OnClic
 
     @Override
     public void onItemClick(@NonNull ClassUnit topLayer, List<ClassUnit> bottomLayer) {
-        dialogIn(new ShowManyClassesDialog(getContext(),topLayer,bottomLayer,this));
+        if (bottomLayer != null)
+            dialogIn(new ShowManyClassesDialog(getContext(), topLayer, bottomLayer, this));
+        else
+            holderIn(new ClassDetailViewHolder(getContext(),topLayer.mClassName+"@"+topLayer.mClassAddress));
     }
 
     @Override
     public void onItemClick(String s) {
-        Toast.makeText(getContext(),s,Toast.LENGTH_SHORT).show();
+        holderIn(new ClassDetailViewHolder(getContext(),s));
     }
 }

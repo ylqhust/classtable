@@ -15,16 +15,19 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 
 public class ClasstableMainActivity extends ClasstableBaseActivity {
 
-
+    Timer timer = new Timer();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.classtable_page_container);
         fitSystemWindow();
-       // fake();
+        fake();
         if(Store.isNotification(this))
             ClasstableNotification.start(this);
         if(!Store.isLocalHaveData(this))
@@ -36,6 +39,15 @@ public class ClasstableMainActivity extends ClasstableBaseActivity {
             else
                 holderIn(new ClassPageHolder(this,allClasses));
         }
+
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                System.out.println("GC begin");
+                System.gc();
+                System.out.println("GC end");
+            }
+        },0,5*1000);
     }
 
     /**
@@ -68,5 +80,12 @@ public class ClasstableMainActivity extends ClasstableBaseActivity {
             back();
         back();
         super.onBackPressed();
+    }
+
+    @Override
+    public void onDestroy(){
+        super.onDestroy();
+        if(timer!=null)
+            timer.cancel();
     }
 }

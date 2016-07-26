@@ -15,11 +15,15 @@ import java.util.List;
 /**
  * Created by apple on 16/7/12.
  */
-public class AllClasses {
+public class AllClasses implements Cloneable{
     private List<OneWeekClasses> mAllClasses = new ArrayList<>();
 
-
     private AllClasses() {
+    }
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        return super.clone();
     }
 
     public static AllClasses parserHubBean(HubBean hubBean) throws ParseException {
@@ -140,7 +144,7 @@ public class AllClasses {
             }
             if(sections.size()==0)
                 continue;
-            allClasses.add(OneWeekClasses.getANewWeek(usefulData.className,addresses,i+1,sections,colorIndex));
+            allClasses.add(OneWeekClasses.getANewWeek(usefulData.className,addresses,usefulData.teacherName,i+1,sections,colorIndex));
         }
         return allClasses;
     }
@@ -175,5 +179,11 @@ public class AllClasses {
                 return;
             }
         mother.add(ow);
+    }
+
+
+    public void deleteByClassNameAndAddress(String className, String address) {
+        for(int i=0;i<mAllClasses.size();i++)
+            mAllClasses.get(i).deleteByClassNameAndAddress(className,address);
     }
 }

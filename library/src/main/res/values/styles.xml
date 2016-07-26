@@ -87,5 +87,24 @@
         <item name="android:gravity">center</item>
     </style>
 
-    <color name="classtable_select_class_dialog_text_color">#3b97e9</color>
+    <style name="classtable_class_detail_information_text_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:background">@drawable/class_detail_information_text</item>
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:layout_marginLeft">8dp</item>
+        <item name="android:layout_marginRight">8dp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:paddingLeft">8dp</item>
+        <item name="android:singleLine">true</item>
+    </style>
+
+    <style name="classtable_dialog_message_text_style">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">45dp</item>
+        <item name="android:textColor">@color/classtable_select_class_dialog_text_color</item>
+        <item name="android:background">@drawable/select_week_dialog_left_button_selector</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">center</item>
+    </style>
 </resources>

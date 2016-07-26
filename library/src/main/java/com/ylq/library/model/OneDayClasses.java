@@ -82,14 +82,14 @@ public class OneDayClasses {
         return sb.toString();
     }
 
-    public static OneDayClasses getANewDay(String className, List<String> address, int weekth, List<int[]> sections, int colorIndex) {
+    public static OneDayClasses getANewDay(String className, List<String> address, String teacher,int weekth, List<int[]> sections, int colorIndex) {
         OneDayClasses oneDayClasses = new OneDayClasses();
         oneDayClasses.mYear = 1996;
         oneDayClasses.mMonth = Store.getMonth(weekth)[sections.get(0)[0]];
         oneDayClasses.mDay = Store.getDay(weekth)[sections.get(0)[0]];
         oneDayClasses.mWeek = sections.get(0)[0]+1;
         for(int i=0;i<sections.size();i++)
-            oneDayClasses.add(ClassUnit.getANewClassUnit(className,address.get(i),oneDayClasses.mMonth,
+            oneDayClasses.add(ClassUnit.getANewClassUnit(className,address.get(i),teacher,oneDayClasses.mMonth,
                     oneDayClasses.mDay,sections.get(i),colorIndex));
         return oneDayClasses;
     }
@@ -100,6 +100,14 @@ public class OneDayClasses {
         for(int i=0;i<oneDayClasses.mClassUnit.size();i++)
             add(oneDayClasses.mClassUnit.get(i));
         return true;
+    }
+
+    public void deleteByClassNameAndAddress(String className, String address) {
+        for(int i=0;i<mClassUnit.size();i++)
+            if(mClassUnit.get(i).mClassName.equals(className) && mClassUnit.get(i).mClassAddress.equals(address)){
+                mClassUnit.remove(i);
+                i--;
+            }
     }
 }
 

@@ -24,6 +24,7 @@ public class ClassUnit {
     public static final String COLOR = "color";
     public static final String MONTH = "month";
     public static final String DAY = "day";
+    public static final String TEACHER = "teacher";
     public String mClassName;
     public String mClassAddress;
     public int mFrom;
@@ -32,29 +33,33 @@ public class ClassUnit {
     public int mColor;
     public int mMonth;
     public int mDay;
+    public String mTeacher;
 
-    public ClassUnit(@NonNull String mClassAddress,
-                     @NonNull String mClassName,
+    public ClassUnit(@NonNull String classAddress,
+                     @NonNull String className,
+                     @NonNull String teacher,
                      @IntRange(from = 1, to = 12) int mFrom,
                      @IntRange(from = 1, to = 12) int mTimes,
                      @IntRange(from = 1, to = 7) int week,
                      @IntRange(from = 0, to = 9) int colorIndex,
                      @IntRange(from = 1, to = 12) int month,
                      @IntRange(from = 1, to = 31) int day) {
-        this.mClassAddress = mClassAddress;
-        this.mClassName = mClassName;
+        this.mClassAddress = classAddress;
+        this.mClassName = className;
         this.mFrom = mFrom;
         this.mTimes = mTimes;
         this.mWeek = week;
         this.mColor = colorIndex;
         this.mMonth = month;
         this.mDay = day;
+        this.mTeacher = teacher;
     }
 
 
     public static ClassUnit parser(HubBean.Data data) throws ParseException {
         return new ClassUnit(data.formattedTxt.location,
                 data.title,
+                data.formattedTxt.teacher,
                 getFrom(data.start),
                 getTimes(data.start, data.end),
                 Common.getWeek(data.start),
@@ -85,12 +90,14 @@ public class ClassUnit {
         object.put(COLOR,mColor);
         object.put(MONTH,mMonth);
         object.put(DAY,mDay);
+        object.put(TEACHER,mTeacher);
         return object;
     }
 
     public static ClassUnit parserJSONObject(JSONObject object) throws JSONException {
         return new ClassUnit(object.getString(CA),
                 object.getString(CN),
+                object.isNull(TEACHER)?"待定":object.getString(TEACHER),
                 object.getInt(FROM),
                 object.getInt(TIMES),
                 object.getInt(WEEK),
@@ -99,7 +106,7 @@ public class ClassUnit {
                 object.getInt(DAY));
     }
 
-    public static ClassUnit getANewClassUnit(String className, String s, int mMonth, int mDay, int[] section, int colorIndex) {
-        return new ClassUnit(s,className,section[1]+1,section[2]-section[1]+1,section[0]+1,colorIndex,mMonth,mDay);
+    public static ClassUnit getANewClassUnit(String className, String address,String teacher, int mMonth, int mDay, int[] section, int colorIndex) {
+        return new ClassUnit(address,className,teacher,section[1]+1,section[2]-section[1]+1,section[0]+1,colorIndex,mMonth,mDay);
     }
 }
