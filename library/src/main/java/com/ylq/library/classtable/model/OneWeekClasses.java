@@ -2,6 +2,7 @@ package com.ylq.library.classtable.model;
 
 import android.support.annotation.IntRange;
 
+import com.ylq.library.classtable.School;
 import com.ylq.library.classtable.query.Config;
 import com.ylq.library.common.DateUtils;
 import com.ylq.library.classtable.Store;
@@ -183,9 +184,9 @@ public class OneWeekClasses {
      */
     public static OneWeekClasses getANewWeek(String className, List<String> addresses,String teacher, @IntRange(from = 1, to = 24) int weekth, List<int[]> sections, int colorIndex) {
         OneWeekClasses oneWeek = new OneWeekClasses();
-        oneWeek.mSeason = Store.getSeason(weekth);
-        oneWeek.mMonth = Store.getMonth(weekth);
-        oneWeek.mDay = Store.getDay(weekth);
+        oneWeek.mSeason = School.querySeason(weekth);
+        oneWeek.mMonth = School.queryMonth(weekth);
+        oneWeek.mDay = School.queryDay(weekth);
         List<int[]> s = sections;
         List<String> ad = addresses;
         while(s.size()>0){

@@ -1,5 +1,9 @@
 package com.ylq.library.classtable;
 
+import android.support.annotation.IntRange;
+
+import com.ylq.library.classtable.model.Common;
+
 import java.util.Calendar;
 
 /**
@@ -111,5 +115,48 @@ public class School {
         is[1] = Integer.valueOf(s[1]);
         is[2] = Integer.valueOf(s[2]);
         return is;
+    }
+
+    /**
+     * @param weekth 第几周
+     * @param week   星期几
+     * @return
+     */
+    public static int queryYear(@IntRange(from = 1, to = 24) int weekth,
+                                @IntRange(from = 1, to = 7) int week) {
+        String y_m_d = ALLW[weekth - 1][week - 1];
+        int[] d = split(y_m_d);
+        return d[0];
+    }
+
+    public static int[] queryMonth(@IntRange(from = 1, to = 24) int weekth) {
+        String[] date = ALLW[weekth - 1];
+        int[] month = new int[7];
+        for (int i = 0; i < date.length; i++) {
+            int[] d = split(date[i]);
+            month[i] = d[1];
+        }
+        return month;
+    }
+
+    public static int[] queryDay(@IntRange(from = 1, to = 24) int weekth) {
+        String[] date = ALLW[weekth-1];
+        int[] day = new int[7];
+        for(int i=0;i<date.length;i++){
+            int[] d = split(date[i]);
+            day[i] = d[2];
+        }
+        return day;
+    }
+
+    /**
+     * 从第五周开始使用冬季作息
+     * @param weekth
+     * @return
+     */
+    public static Common.SEASON querySeason(@IntRange(from = 1,to = 24) int weekth){
+        if(weekth >=5)
+            return Common.SEASON.WINTER;
+        return Common.SEASON.SUMMER;
     }
 }

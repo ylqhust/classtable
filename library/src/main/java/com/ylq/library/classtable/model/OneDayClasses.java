@@ -1,5 +1,6 @@
 package com.ylq.library.classtable.model;
 
+import com.ylq.library.classtable.School;
 import com.ylq.library.classtable.query.HubBean;
 import com.ylq.library.classtable.Store;
 
@@ -84,9 +85,9 @@ public class OneDayClasses {
 
     public static OneDayClasses getANewDay(String className, List<String> address, String teacher,int weekth, List<int[]> sections, int colorIndex) {
         OneDayClasses oneDayClasses = new OneDayClasses();
-        oneDayClasses.mYear = 1996;
-        oneDayClasses.mMonth = Store.getMonth(weekth)[sections.get(0)[0]];
-        oneDayClasses.mDay = Store.getDay(weekth)[sections.get(0)[0]];
+        oneDayClasses.mYear = School.queryYear(weekth,sections.get(0)[0]+1);
+        oneDayClasses.mMonth = School.queryMonth(weekth)[sections.get(0)[0]];
+        oneDayClasses.mDay = School.queryDay(weekth)[sections.get(0)[0]];
         oneDayClasses.mWeek = sections.get(0)[0]+1;
         for(int i=0;i<sections.size();i++)
             oneDayClasses.add(ClassUnit.getANewClassUnit(className,address.get(i),teacher,oneDayClasses.mMonth,

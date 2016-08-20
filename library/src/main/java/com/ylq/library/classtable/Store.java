@@ -62,6 +62,7 @@ public class Store {
         try {
             JSONArray jsonArray = new JSONArray(data);
             AllClasses main = AllClasses.parserJSONArray(jsonArray);
+            main.addEmptyWeekUntil24();
             mMainData = main;
             if (addData != null) {
                 JSONArray jsonArrays = new JSONArray(addData);
@@ -145,18 +146,6 @@ public class Store {
             edit.commit();
             return true;
         }
-    }
-
-    public static int[] getMonth(int weekth) {
-        return mMainData.getOneWeek(weekth).mMonth;
-    }
-
-    public static int[] getDay(int weekth) {
-        return mMainData.getOneWeek(weekth).mDay;
-    }
-
-    public static Common.SEASON getSeason(int weekth) {
-        return mMainData.getOneWeek(weekth).getSEASON();
     }
 
     /**
