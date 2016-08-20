@@ -2,6 +2,7 @@ package com.ylq.library.classtable.widget;
 
 import android.annotation.TargetApi;
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -25,7 +26,7 @@ public class SelectWeekView extends View {
     private static final float STROKE_WIDTH = 1;
     private static final int STROKE_COLOR = Color.parseColor("#d1d1d1");
     private static final int BLUE_BLOCK_COLOR = Color.parseColor("#3b95e8");
-    private static final int TEXT_SIZE = 40;
+    private static final int TEXT_SIZE = (int) (Resources.getSystem().getDisplayMetrics().density*13);
     private static final String[] TEXTS = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13"
             , "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "ALL"};
     private float mTextX[] = new float[5];

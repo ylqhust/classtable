@@ -2,6 +2,7 @@ package com.ylq.library.classtable.widget;
 
 import android.annotation.TargetApi;
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
@@ -75,12 +76,12 @@ public class ClassBoxLayout extends FrameLayout {
                 Message msg = new Message();
                 mHandler.sendMessage(msg);
             }
-        },0,1000*60*2);
+        }, 0, 1000 * 60 * 2);
     }
 
 
     public void setAdapter(ClassBoxAdapter adapter) {
-        if(this.mAdapter!=null)
+        if (this.mAdapter != null)
             this.mAdapter.unGurad();
         this.mAdapter = adapter;
         showData();
@@ -90,6 +91,7 @@ public class ClassBoxLayout extends FrameLayout {
     protected void onMeasure(int width, int height) {
         int w = MeasureSpec.getSize(width);
         int h = MeasureSpec.getSize(height);
+        float density = Resources.getSystem().getDisplayMetrics().density;
         setMeasuredDimension(w, h);
         View v = getChildAt(0);
         v.measure(MeasureSpec.makeMeasureSpec(w, MeasureSpec.EXACTLY),
@@ -97,8 +99,8 @@ public class ClassBoxLayout extends FrameLayout {
         if (mAdapter == null)
             return;
         int count = getChildCount();
-        int unitWidth = w / 7;
-        int unitHeight = h / 12;
+        float unitWidth = w / 7;
+        float unitHeight = (h-density*11) / 12;
         for (int i = 1; i < count; i++) {
             View child = getChildAt(i);
             if (child instanceof TimeIndicator)
@@ -108,8 +110,8 @@ public class ClassBoxLayout extends FrameLayout {
                 LayoutParams params = mAdapter.getParams(i - 1);
                 int yStart = params.yStart;
                 int yEnd = params.yEnd;
-                child.measure(MeasureSpec.makeMeasureSpec(unitWidth, MeasureSpec.EXACTLY),
-                        MeasureSpec.makeMeasureSpec((yEnd - yStart + 1) * unitHeight, MeasureSpec.EXACTLY));
+                child.measure(MeasureSpec.makeMeasureSpec((int) unitWidth, MeasureSpec.EXACTLY),
+                        MeasureSpec.makeMeasureSpec((int) ((yEnd - yStart + 1) * unitHeight), MeasureSpec.EXACTLY));
             }
         }
     }
@@ -118,8 +120,9 @@ public class ClassBoxLayout extends FrameLayout {
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
         int width = r - l;
         int height = b - t;
-        int unitWidth = width / 7;
-        int unitHeight = height / 12;
+        float density = Resources.getSystem().getDisplayMetrics().density;
+        float unitWidth = width / 7;
+        float unitHeight = (height-density*11) / 12;
         View v = getChildAt(0);
         v.layout(0, 0, width, height);
         if (mAdapter == null)
@@ -136,7 +139,7 @@ public class ClassBoxLayout extends FrameLayout {
                 int x = params.x;
                 int yStart = params.yStart;
                 int yEnd = params.yEnd;
-                child.layout(x * unitWidth, yStart * unitHeight, (x + 1) * unitWidth-1, (yEnd + 1) * unitHeight-1);
+                child.layout((int) (x * unitWidth), (int) (yStart * (unitHeight+density)), (int) ((x + 1) * unitWidth - 1), (int) ((yEnd + 1) * (unitHeight+density) - 1));
             }
         }
     }
@@ -249,6 +252,7 @@ public class ClassBoxLayout extends FrameLayout {
         public abstract boolean isContainToday();
 
         public abstract Common.SEASON getSEASON();
+
         public abstract void unGurad();
 
         public FoldTextView origin(Context context, String s, int color) {
@@ -256,9 +260,15 @@ public class ClassBoxLayout extends FrameLayout {
             tx.setText(s);
             tx.setTextColor(Color.WHITE);
             tx.setGravity(Gravity.CENTER);
+            float textSize = context.getResources().getDimension(R.dimen.flodtextview_text_size);
+            textSize = textSize <= 12 ? 12 : textSize;
+            tx.setTextSize(textSize);
             Drawable drawable = context.getResources().getDrawable(R.drawable.classtable_unit_circle_coner);
             drawable.setColorFilter(color, PorterDuff.Mode.ADD);
-            tx.setBackground(drawable);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN)
+                tx.setBackground(drawable);
+            else
+                tx.setBackgroundDrawable(drawable);
             return tx;
         }
 
@@ -270,22 +280,22 @@ public class ClassBoxLayout extends FrameLayout {
         public int yStart;
         public int yEnd;
 
-        public LayoutParams(@IntRange(from = 0,to = 6) int x,
-                            @IntRange(from = 0,to = 11) int yStart,
-                            @IntRange(from = 0,to = 11) int yEnd) {
+        public LayoutParams(@IntRange(from = 0, to = 6) int x,
+                            @IntRange(from = 0, to = 11) int yStart,
+                            @IntRange(from = 0, to = 11) int yEnd) {
             this.x = x;
             this.yStart = yStart;
             this.yEnd = yEnd;
         }
     }
 
-    public  static interface OnItemClickListener{
+    public static interface OnItemClickListener {
         public void onItemClick(@NonNull ClassUnit topLayer, List<ClassUnit> bottomLayer);
         //bottomLayer 或许存在，或许也没有，如果没有，就可以直接进入课程编辑界面
     }
 
-    public void finish(){
-        if(mTimer!=null)
+    public void finish() {
+        if (mTimer != null)
             mTimer.cancel();
     }
 

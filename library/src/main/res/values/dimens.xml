@@ -22,4 +22,9 @@
     <dimen name="classtable_dialog_select_week_listview_width">160dp</dimen>
     <dimen name="classtable_dialog_select_week_listview_height">250dp</dimen>
     <dimen name="classtable_setting_page_content_rela_height">60dp</dimen>
+    <dimen name="classtable_add_button_wh">60dp</dimen>
+    <dimen name="flodtextview_text_size">4sp</dimen>
+    <dimen name="classtable_ing_login_hub_dialog_img_width">144dp</dimen>
+    <dimen name="classtable_ing_login_hub_dialog_img_height">48dp</dimen>
+    <dimen name="classtable_unitHeight">50dp</dimen>
 </resources>

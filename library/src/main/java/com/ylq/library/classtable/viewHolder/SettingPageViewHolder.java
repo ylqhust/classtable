@@ -4,9 +4,9 @@ import android.content.Context;
 import android.view.View;
 import android.widget.RelativeLayout;
 
-import com.sevenheaven.iosswitch.ShSwitchView;
 import com.ylq.library.classtable.ClasstableNotification;
 import com.ylq.library.R;
+import com.ylq.library.classtable.widget.ShSwitchView;
 import com.ylq.library.common.ClickGuard;
 import com.ylq.library.classtable.Store;
 

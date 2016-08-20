@@ -264,5 +264,15 @@ public class OneWeekClasses {
         for(int i=0;i<mOneDayClasses.size();i++)
             mOneDayClasses.get(i).deleteByClassNameAndAddress(className,address);
     }
+
+    public int getWeekDay() {
+        Calendar calendar = Calendar.getInstance();
+        int month = calendar.get(Calendar.MONTH)+1;
+        int day = calendar.get(Calendar.DATE);
+        for(int i=0;i<mMonth.length;i++)
+            if(mMonth[i]==month&&mDay[i]==day)
+                return i+1;
+        return 1;
+    }
 }
 

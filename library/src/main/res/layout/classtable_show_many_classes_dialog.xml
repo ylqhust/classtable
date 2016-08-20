@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/classtable_show_many_classes_rela"
     android:layout_width="match_parent"
-    android:background="@color/transparent"
+    android:background="@drawable/classtable_dialog_transparent_background"
     android:layout_height="match_parent">
     <com.ylq.library.classtable.widget.HorDragLayout
         android:id="@+id/classtable_show_many_classes_dialog_hordraglayout"

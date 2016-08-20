@@ -3,105 +3,57 @@
     android:id="@+id/classtable_classes_container_pm_rela"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"/>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/ccc_view_color"/>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"/>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/ccc_view_color"/>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"/>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/ccc_view_color"/>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"/>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/ccc_view_color"/>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"/>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/ccc_view_color"/>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"/>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/ccc_view_color"/>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"/>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/ccc_view_color"/>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"/>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/ccc_view_color"/>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"/>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/ccc_view_color"/>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"/>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/ccc_view_color"/>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"/>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/ccc_view_color"/>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"/>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/ccc_view_color"/>
+        <View style="@style/classtable_classes_container_pm_view1_style" />
+
+        <View style="@style/classtable_classes_container_pm_view2_style" />
+
+        <View style="@style/left_time_linear_style" />
+
+        <View style="@style/classtable_classes_container_pm_view2_style" />
+
+        <View style="@style/left_time_linear_style" />
+
+        <View style="@style/classtable_classes_container_pm_view2_style" />
+
+        <View style="@style/left_time_linear_style" />
+
+        <View style="@style/classtable_classes_container_pm_view2_style" />
+
+        <View style="@style/left_time_linear_style" />
+
+        <View style="@style/classtable_classes_container_pm_view2_style" />
+
+        <View style="@style/left_time_linear_style" />
+
+        <View style="@style/classtable_classes_container_pm_view2_style" />
+
+        <View style="@style/left_time_linear_style" />
+
+        <View style="@style/classtable_classes_container_pm_view2_style" />
+
+        <View style="@style/left_time_linear_style" />
+
+        <View style="@style/classtable_classes_container_pm_view2_style" />
+
+        <View style="@style/left_time_linear_style" />
+
+        <View style="@style/classtable_classes_container_pm_view2_style" />
+
+        <View style="@style/left_time_linear_style" />
+
+        <View style="@style/classtable_classes_container_pm_view2_style" />
+
+        <View style="@style/left_time_linear_style" />
+
+        <View style="@style/classtable_classes_container_pm_view2_style" />
+
+        <View style="@style/left_time_linear_style" />
+
+        <View style="@style/classtable_classes_container_pm_view2_style" />
     </LinearLayout>
 </RelativeLayout>

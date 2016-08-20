@@ -6,4 +6,23 @@
     <declare-styleable name="DeleteCircle">
         <attr name="deleteCirclecolor" format="reference"/>
     </declare-styleable>
+    <declare-styleable name="SwitchView">
+        <attr name="onColor" format="color|reference"/>
+        <attr name="offColor" format="color|reference"/>
+        <attr name="leftText" format="string|reference"/>
+        <attr name="rightText" format="string|reference"/>
+        <attr name="onTextSize" format="dimension|reference"/>
+        <attr name="offTextSize" format="dimension|reference"/>
+        <attr name="onTextColor" format="color|reference"/>
+        <attr name="offTextColor" format="color|reference"/>
+        <attr name="onArea">
+            <enum name="left" value="0"/>
+            <enum name="right" value="1"/>
+        </attr>
+    </declare-styleable>
+    <declare-styleable name="ShSwitchView">
+        <attr name="tintColor" format="reference|color" />
+        <attr name="outerStrokeWidth" format="reference|dimension" />
+        <attr name="shadowSpace" format="reference|dimension" />
+    </declare-styleable>
 </resources>

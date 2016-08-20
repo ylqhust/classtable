@@ -1,13 +1,13 @@
 package com.ylq.library.classtable.viewHolder;
 
 import android.content.Context;
-import android.support.design.widget.FloatingActionButton;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnticipateOvershootInterpolator;
 import android.view.animation.OvershootInterpolator;
 import android.view.animation.RotateAnimation;
 import android.view.animation.TranslateAnimation;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -23,7 +23,7 @@ public class AddButtonHolder extends ZeroAlphaDialogHolder implements View.OnCli
     private TextView mCengke;
     private TextView mFromHub;
     private TextView mAddBM;
-    private FloatingActionButton mCancle;
+    private ImageView mCancle;
     private RelativeLayout mRelaBackground;
 
     public AddButtonHolder(Context context) {
@@ -39,7 +39,7 @@ public class AddButtonHolder extends ZeroAlphaDialogHolder implements View.OnCli
         mCengke = findT(R.id.classtable_add_button_page_text_cengke);
         mFromHub = findT(R.id.classtable_add_button_page_text_get_from_hub);
         mAddBM = findT(R.id.classtable_add_button_page_text_add_by_myself);
-        mCancle = (FloatingActionButton) findViewById(R.id.classtable_add_button_page_float_button);
+        mCancle = (ImageView) findViewById(R.id.classtable_add_button_page_float_button);
         mRelaBackground = findR(R.id.classtable_add_button_page_rela);
     }
 
@@ -75,19 +75,20 @@ public class AddButtonHolder extends ZeroAlphaDialogHolder implements View.OnCli
     @Override
     public void in(long duration, AnimationEndCallBack callBack) {
         rotationCancleButton(duration,0,45);
-        YTranslate(duration,100,0,mCengke,null);
-        YTranslate(duration*2,200,0,mFromHub,null);
-        YTranslate(duration*3,300,0,mAddBM,null);
+        if(mCengke.isShown()){
+            YTranslate(duration,100,0,mCengke,null);
+            YTranslate(duration*2,200,0,mFromHub,null);
+            YTranslate(duration*3,300,0,mAddBM,null);
+        }else {
+            YTranslate(duration,100,0,mFromHub,null);
+            YTranslate(duration*2,200,0,mAddBM,null);
+        }
     }
 
     @Override
     public void leave(long duration, final AnimationEndCallBack callback){
         if(callback!=null)
             callback.end();
-//        rotationCancleButton(duration,45,0);
-//        YTranslate(duration,0,100,mCengke,null);
-//        YTranslate(duration*2,0,200,mFromHub,null);
-//        YTranslate(duration*3,0,300,mAddBM,callback);
     }
 
 

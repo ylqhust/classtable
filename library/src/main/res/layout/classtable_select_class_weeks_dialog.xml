@@ -3,12 +3,12 @@
     android:id="@+id/classtable_select_class_dialog_rela_background"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/transparent">
+    android:background="@drawable/classtable_dialog_transparent_background">
 
     <LinearLayout
         android:id="@+id/classtable_select_class_dialog_linear"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:layout_marginLeft="32dp"
         android:layout_marginRight="32dp"
@@ -44,6 +44,7 @@
             <TextView
                 android:id="@+id/classtable_select_class_dialog_text_cancle"
                 style="@style/classtable_select_class_dialog_text_style"
+                android:layout_height="45dp"
                 android:background="@drawable/select_week_dialog_left_button_selector"
                 android:text="@string/classtable_cancle"/>
             <View
@@ -53,6 +54,7 @@
             <TextView
                 android:id="@+id/classtable_select_class_dialog_text_ok"
                 style="@style/classtable_select_class_dialog_text_style"
+                android:layout_height="45dp"
                 android:background="@drawable/select_week_dialog_right_button_selector"
                 android:text="@string/classtable_ok"/>
         </LinearLayout>

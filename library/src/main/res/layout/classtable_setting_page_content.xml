@@ -19,7 +19,7 @@
             android:layout_marginLeft="16dp"
             android:textColor="@color/classtable_setting_page_content_rela_text_color"
             android:textSize="18sp"/>
-        <com.sevenheaven.iosswitch.ShSwitchView
+        <com.ylq.library.classtable.widget.ShSwitchView
             android:id="@+id/classtable_setting_page_content_switch_show_all_classes"
             android:layout_width="60dip"
             android:layout_height="40dip"
@@ -43,7 +43,7 @@
             android:layout_marginLeft="16dp"
             android:textColor="@color/classtable_setting_page_content_rela_text_color"
             android:textSize="18sp"/>
-        <com.sevenheaven.iosswitch.ShSwitchView
+        <com.ylq.library.classtable.widget.ShSwitchView
             android:id="@+id/classtable_setting_page_content_switch_notification"
             android:layout_width="60dip"
             android:layout_height="40dip"

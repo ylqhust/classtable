@@ -3,8 +3,7 @@
     android:id="@+id/classtable_dialog_message_rela_background"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/transparent">
-
+    android:background="@drawable/classtable_dialog_transparent_background">
     <LinearLayout
         android:id="@+id/classtable_dialog_message_linear"
         android:layout_width="match_parent"

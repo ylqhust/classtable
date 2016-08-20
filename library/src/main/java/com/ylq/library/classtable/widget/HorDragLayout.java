@@ -136,7 +136,8 @@ public class HorDragLayout extends HorizontalScrollView {
         return true;
     }
 
-    int xDown, yDown, moveCount;
+    int xDown, yDown;
+    long downTime,upTime;
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
@@ -146,19 +147,18 @@ public class HorDragLayout extends HorizontalScrollView {
             case MotionEvent.ACTION_DOWN:
                 xDown = (int) event.getX();
                 yDown = (int) event.getY();
+                downTime = System.currentTimeMillis();
                 mLinearContainer.dispatchTouchEvent(event);
-                moveCount = 0;
                 break;
             case MotionEvent.ACTION_MOVE:
-                moveCount++;
-                System.out.println(moveCount);
                 break;
             case MotionEvent.ACTION_UP:
                 int xUp = (int) event.getX();
                 int yUp = (int) event.getY();
                 int deltaX = Math.abs(xUp-xDown);
                 int deltaY = Math.abs(yUp-yDown);
-                if (moveCount <= 5 && deltaX<=2 && deltaY <=2)//移动数量不大于5,x，y轴方向上的移动改变小于等于2才认为是一次点击事件
+                upTime = System.currentTimeMillis();
+                if (deltaX<=2 && deltaY <=2 && (upTime-downTime)<1000)//按下时间不超过1秒，x，y轴方向上的移动改变小于等于2才认为是一次点击事件
                     mLinearContainer.dispatchTouchEvent(event);
                 break;
         }

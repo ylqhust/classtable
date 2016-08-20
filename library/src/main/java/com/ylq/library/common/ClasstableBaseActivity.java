@@ -3,6 +3,7 @@ package com.ylq.library.common;
 import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,7 +11,6 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
 
-import com.readystatesoftware.systembartint.SystemBarTintManager;
 import com.ylq.library.R;
 import com.ylq.library.classtable.viewHolder.AnimationEndCallBack;
 import com.ylq.library.classtable.viewHolder.ClasstableBaseHolder;
@@ -59,7 +59,9 @@ public class ClasstableBaseActivity extends AppCompatActivity {
      *
      */
     public void fitSystemWindow() {
-        getSupportActionBar().hide();
+        ActionBar actionBar = getSupportActionBar();
+        if(actionBar!=null)
+            actionBar.hide();
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT){
             int statusBarHeight = getStatusBarHeight(this);
             View child = getActivityView();
@@ -207,13 +209,16 @@ public class ClasstableBaseActivity extends AppCompatActivity {
     }
 
     public boolean backTwice(){
-        if(mStack.top()==null)
-            return false;
-        return mStack.top().backTwice();
+        if(mDialog!=null)
+            return mDialog.backTwice();
+        if(mStack.top()!=null)
+            return mStack.top().backTwice();
+        return false;
     }
 
 
     public void reStart(ClasstableBaseHolder holder) {
+        dismissDialog();
         while(mStack.top()!=null){
             mStack.pop().unGurad();
         }

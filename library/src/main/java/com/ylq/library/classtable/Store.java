@@ -2,15 +2,18 @@ package com.ylq.library.classtable;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.view.View;
 
 import com.ylq.library.classtable.model.AllClasses;
 import com.ylq.library.classtable.model.ClassUnit;
 import com.ylq.library.classtable.model.Common;
 import com.ylq.library.classtable.model.NewClassDataWrap;
+import com.ylq.library.classtable.model.OneDayClasses;
 import com.ylq.library.classtable.model.OneWeekClasses;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -221,13 +224,13 @@ public class Store {
         }
 
         List<String> results = new ArrayList<>();
-        for(int i=0;i<weeks.size();i++)
-            results.add(getWeekString(weeks.get(i))+"@"+getSectionString(sections.get(i)));
+        for (int i = 0; i < weeks.size(); i++)
+            results.add(getWeekString(weeks.get(i)) + "@" + getSectionString(sections.get(i)));
         return results;
     }
 
     private static String getSectionString(int[] ints) {
-        return "星期"+ints[0]+" 第"+ints[1]+"节 到 第"+(ints[1]+ints[2]-1)+"节";
+        return "星期" + ints[0] + " 第" + ints[1] + "节 到 第" + (ints[1] + ints[2] - 1) + "节";
     }
 
     private static String getWeekString(byte[] checked) {
@@ -252,7 +255,7 @@ public class Store {
             if (j == 23)
                 break;
         }
-        if (i<24 && checked[i] != 0) {
+        if (i < 24 && checked[i] != 0) {
             if (i == 23)
                 sb.append("24,");
             else
@@ -285,11 +288,9 @@ public class Store {
 
     /**
      * 根据课程名和课程地址删除课程
-     * @param mClassName
-     * @param mAddress
      * @return
      */
-    public static boolean deleteByClassNameAndAddress(Context context,String className, String address) {
+    public static boolean deleteByClassNameAndAddress(Context context, String className, String address) {
         SharedPreferences sharedPreferences = context.getSharedPreferences(SH_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         String data = sharedPreferences.getString(SAVED_CLASS_TABLE, null);
@@ -299,14 +300,14 @@ public class Store {
         try {
             JSONArray jsonArray = new JSONArray(data);
             AllClasses main = AllClasses.parserJSONArray(jsonArray);
-            main.deleteByClassNameAndAddress(className,address);
-            editor.putString(SAVED_CLASS_TABLE,main.getAllDataJSONString());
+            main.deleteByClassNameAndAddress(className, address);
+            editor.putString(SAVED_CLASS_TABLE, main.getAllDataJSONString());
             editor.commit();
             if (addData != null) {
                 JSONArray jsonArrays = new JSONArray(addData);
                 AllClasses x = AllClasses.parserJSONArray(jsonArrays);
-                x.deleteByClassNameAndAddress(className,address);
-                editor.putString(ADD_BY_MYSELF_DATA,x.getAllDataJSONString());
+                x.deleteByClassNameAndAddress(className, address);
+                editor.putString(ADD_BY_MYSELF_DATA, x.getAllDataJSONString());
                 editor.commit();
             }
             return true;
@@ -317,13 +318,42 @@ public class Store {
     }
 
     /**
-     * 按照主客户端的需求，提供一个查询当前周所有课程方法
-     * 返回一个String[]数组，此数组的长度一定为7，代表从星期一到星期7
-     * 数组中的值要么是null，要么是一个字符串，每个字符串
      * @param context
      * @return
      */
-    public static String[] queryCurrentWeek(Context context){
-        return null;
+    public static JSONObject queryCurrentWeek(Context context) {
+        AllClasses allClasses = getLocalData(context);
+        mMainData = null;
+        if (allClasses == null)
+            return null;
+        try {
+            int currentWeek = allClasses.getCurrentWeek();
+            OneWeekClasses oneWeekClasses = allClasses.getOneWeek(currentWeek);
+            List<ClassUnit> classUnits = oneWeekClasses.getAllUnit();
+            JSONObject object = new JSONObject();
+            object.put("currentWeek", "第" + currentWeek + "周");
+            JSONArray array = new JSONArray();
+            for (int i = 0; i < classUnits.size(); i++) {
+                JSONObject j = new JSONObject();
+                ClassUnit unit = classUnits.get(i);
+                int start = unit.mFrom;
+                int end = unit.mTimes - start + 1;
+                int week = unit.mWeek;
+                String className = new String(unit.mClassName);
+                String address = new String(unit.mClassAddress);
+                String teacher = new String(unit.mTeacher);
+                j.put("weekday", week);
+                j.put("section", start + "-" + end + "节");
+                j.put("name", className);
+                j.put("address", address);
+                j.put("teacher", teacher);
+                array.put(j);
+            }
+            object.put("array",array);
+            return object;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 }

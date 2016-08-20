@@ -8,6 +8,7 @@ import android.os.Looper;
 import android.os.Message;
 import android.support.annotation.NonNull;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.webkit.CookieManager;
 import android.webkit.ValueCallback;
 import android.webkit.WebChromeClient;
@@ -18,6 +19,8 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.ylq.library.R;
+import com.ylq.library.classtable.Global;
+import com.ylq.library.classtable.dialog.IngLoginHubDialog;
 import com.ylq.library.classtable.model.AllClasses;
 import com.ylq.library.classtable.query.Callback;
 import com.ylq.library.classtable.query.HubBean;
@@ -142,13 +145,16 @@ public class WBY_HubLoginPageHolder extends ClasstableBaseHolder implements Call
             return;
         }
 
+        Global.USER_ID = new String(username);
+        InputMethodManager manager = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+        manager.hideSoftInputFromWindow(mLogin.getWindowToken(),0);
         String commend = "javascript:" +
                 "document.getElementById(\"username\").value=\"%s\";" +
                 "document.getElementById(\"password\").value=\"%s\";" +
                 "$('#form1').submit();";
         mWebView.loadUrl(String.format(commend, username, password));
         mLogin.setVisibility(View.GONE);
-        holderIn(new IngLoginHubViewHolder(getContext()));
+        dialogIn(new IngLoginHubDialog(getContext()));
     }
 
 
@@ -200,8 +206,9 @@ public class WBY_HubLoginPageHolder extends ClasstableBaseHolder implements Call
                         mHandler.postDelayed(new Runnable() {
                             public void run() {
                                 if (isTheEnd) {
-                                    back();
-                                    holderIn(new WrongAccountOrPasswordHolder(getContext()));
+                                    if(isShown())
+                                        back();
+                                    Toast.makeText(getContext(),"学号或密码错误",Toast.LENGTH_LONG).show();
                                     prepare();
                                 }
                             }
@@ -225,19 +232,24 @@ public class WBY_HubLoginPageHolder extends ClasstableBaseHolder implements Call
         if (who == Who.HUB_COURSE) {
             if(isShown()){
                 //显示正在解析的Dialog
-                back();
-                holderIn(new IngParserClassHolder(getContext()));
+                //这里就不显示了，反正数据都获取了，解析1，2秒的事，显不显示都无所谓
             }
         }
     }
 
     @Override
-    public void hubCourseNoError(@NonNull Who who, @NonNull HubBean bean, @NonNull Response response) {
+    public void hubCourseNoError(@NonNull Who who, @NonNull final HubBean bean, @NonNull Response response) {
         if (who == Who.HUB_COURSE) {
             //从hub查询没有出错，从这里开始解析数据
             AllClasses allClasses = null;
             try {
                 allClasses = AllClasses.parserHubBean(bean);
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Query.getInstance().upload(bean);
+                    }
+                }).start();
                 Store.saveClassData(getContext(), allClasses);
                 if(!isShown())
                     return;

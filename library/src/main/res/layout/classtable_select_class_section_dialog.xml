@@ -3,12 +3,14 @@
     android:id="@+id/classtable_select_class_dialog_rela_background"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/transparent">
+    android:background="@drawable/classtable_dialog_transparent_background">
+
 
     <LinearLayout
+
         android:id="@+id/classtable_select_class_dialog_linear"
         android:layout_width="match_parent"
-        android:layout_height="280dp"
+        android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:layout_marginLeft="32dp"
         android:layout_marginRight="32dp"
@@ -25,48 +27,55 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
             <NumberPicker
                 android:id="@+id/classtable_select_class_section_dialog_firstSection"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                />
+                android:layout_centerInParent="true" />
+
             <NumberPicker
                 android:id="@+id/classtable_select_class_section_dialog_week"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toLeftOf="@+id/classtable_select_class_section_dialog_firstSection"/>
+                android:layout_toLeftOf="@+id/classtable_select_class_section_dialog_firstSection" />
+
             <NumberPicker
                 android:id="@+id/classtable_select_class_section_dialog_secondSection"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@+id/classtable_select_class_section_dialog_firstSection"/>
+                android:layout_toRightOf="@+id/classtable_select_class_section_dialog_firstSection" />
         </RelativeLayout>
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginTop="16dp"
-            android:background="@color/classtable_select_class_dialog_divide_line_color"/>
+            android:background="@color/classtable_select_class_dialog_divide_line_color" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal">
+
             <TextView
                 android:id="@+id/classtable_select_class_dialog_text_cancle"
                 style="@style/classtable_select_class_dialog_text_style"
+                android:layout_height="45dp"
                 android:background="@drawable/select_week_dialog_left_button_selector"
-                android:text="@string/classtable_cancle"/>
+                android:text="@string/classtable_cancle" />
+
             <View
                 android:layout_width="1dp"
                 android:layout_height="match_parent"
-                android:background="@color/classtable_select_class_dialog_divide_line_color"/>
+                android:background="@color/classtable_select_class_dialog_divide_line_color" />
+
             <TextView
                 android:id="@+id/classtable_select_class_dialog_text_ok"
                 style="@style/classtable_select_class_dialog_text_style"
+                android:layout_height="45dp"
                 android:background="@drawable/select_week_dialog_right_button_selector"
-                android:text="@string/classtable_ok"/>
+                android:text="@string/classtable_ok" />
         </LinearLayout>
     </LinearLayout>
 </RelativeLayout>

@@ -1,8 +1,10 @@
 package com.ylq.library.classtable.query;
 
 import android.support.annotation.NonNull;
+import android.util.Log;
 
 import com.google.gson.Gson;
+import com.ylq.library.classtable.Global;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -24,7 +26,7 @@ public class Query {
     private static Query sInstance = null;
 
     private HubServer mHubServer; // hub服务器
-
+    private BYServer mBYServer; //冰岩服务器
     private Query() {
 
         RestAdapter adapter = new RestAdapter.Builder()
@@ -32,6 +34,11 @@ public class Query {
                 .setLogLevel(DEBUG ? RestAdapter.LogLevel.FULL : RestAdapter.LogLevel.NONE)
                 .build();
         mHubServer = adapter.create(HubServer.class);
+        adapter = new RestAdapter.Builder()
+                .setEndpoint(BYServer.ENDPOINT)
+                .setLogLevel(DEBUG?RestAdapter.LogLevel.FULL: RestAdapter.LogLevel.NONE)
+                .build();
+        mBYServer = adapter.create(BYServer.class);
     }
 
     @NonNull
@@ -82,5 +89,36 @@ public class Query {
                 callback.finish(who);
             }
         });
+    }
+
+
+    /**
+     * 上传课表
+     */
+    public void upload(HubBean hubBean){
+        String jsonData = parserHubBean(hubBean);
+        if(jsonData == null){
+            Log.d("Classtable->Query->upload","jsonData is null");
+            return;
+        }
+        mBYServer.upload(jsonData, new retrofit.Callback<String>() {
+            @Override
+            public void success(String s, Response response) {
+                Log.d("Classtable->Query->upload","success"+" "+s);
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+                Log.d("Classtable->Query->upload","failed");
+                error.printStackTrace();
+            }
+        });
+    }
+
+    private String parserHubBean(HubBean hubBean) {
+        if(Global.USER_ID == null)
+            return null;
+        //for(HubBean.Data data:hubBean.datas)
+        return null;
     }
 }

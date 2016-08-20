@@ -115,6 +115,9 @@ public abstract class ClasstableBaseDialog {
         animation.startNow();
 
     }
+    public boolean backTwice(){
+        return false;
+    }
 
     public static interface OnOkButtonClick{
         void onOkClick(Object data);

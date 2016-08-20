@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/classtable_ing_login_hub_dialog_rela_background"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/classtable_dialog_transparent_background">
+    <TextView
+        android:id="@+id/textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="正在登陆。。。"
+        android:textColor="@color/classtable_theme_color"
+        android:layout_centerInParent="true"/>
+    <LinearLayout
+        android:layout_width="@dimen/classtable_ing_login_hub_dialog_img_width"
+        android:layout_height="@dimen/classtable_ing_login_hub_dialog_img_height"
+        android:orientation="horizontal"
+        android:layout_alignBottom="@+id/textview"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="30dp">
+        <ImageView
+            android:id="@+id/classtable_ing_login_hub_img1"
+            android:layout_width="@dimen/classtable_ing_login_hub_dialog_img_width"
+            android:layout_height="@dimen/classtable_ing_login_hub_dialog_img_height"
+            android:src="@mipmap/classtable_ing"/>
+        <ImageView
+            android:id="@+id/classtable_ing_login_hub_img2"
+            android:layout_width="@dimen/classtable_ing_login_hub_dialog_img_width"
+            android:layout_height="@dimen/classtable_ing_login_hub_dialog_img_height"
+            android:src="@mipmap/classtable_ing"/>
+    </LinearLayout>
+
+</RelativeLayout>
+

@@ -2,6 +2,7 @@ package com.ylq.library.classtable.adapter;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.os.Build;
 import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -51,7 +52,10 @@ public class SelectWeekAdapter extends BaseAdapter {
         TextView textView = (TextView) mInflater.inflate(R.layout.classtable_item_select_week, null);
         textView.setText(mListViewData[position]);
         if ((position + 1) == mSelectWeek) {
-            textView.setBackground(mContext.getResources().getDrawable(R.drawable.select_week_item_select_shape));
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN)
+                textView.setBackground(mContext.getResources().getDrawable(R.drawable.select_week_item_select_shape));
+            else
+                textView.setBackgroundDrawable(mContext.getResources().getDrawable(R.drawable.select_week_item_select_shape));
             textView.setTextColor(Color.WHITE);
         }
         textView.setOnClickListener(new View.OnClickListener() {

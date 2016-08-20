@@ -2,11 +2,12 @@ package com.ylq.library.classtable.viewHolder;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.os.Build;
 import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -15,6 +16,7 @@ import com.ylq.library.R;
 import com.ylq.library.classtable.adapter.ClassViewPagerAdapter2;
 import com.ylq.library.classtable.adapter.SelectWeekAdapter;
 import com.ylq.library.classtable.adapter.ShowManyClassesAdapter;
+import com.ylq.library.classtable.dialog.IngLoginHubDialog;
 import com.ylq.library.classtable.dialog.ShowManyClassesDialog;
 import com.ylq.library.classtable.model.AllClasses;
 import com.ylq.library.classtable.model.ClassUnit;
@@ -37,7 +39,7 @@ public class ClassPageHolder extends ClasstableBaseHolder implements View.OnClic
     private RelativeLayout mRelaWeek;//选择当前周的按钮
     private TextView mTVCurrentWeek;//显示当前周的TextView
     private RelativeLayout mRelaSetting;//设置按钮
-    private FloatingActionButton mAddButton;
+    private ImageView mAddButton;
     private ViewPager mViewPager;
     private PagerAdapter mAdapter;
     private AllClasses mAllClasses;
@@ -101,10 +103,16 @@ public class ClassPageHolder extends ClasstableBaseHolder implements View.OnClic
 
         if (oneWeekClasses.isContainToday()) {
             LinearLayout father = findL(R.id.classtable_day_week_father_linear);
-            father.getChildAt(DateUtils.getWeekday() - 1).setBackground(getContext().getResources().getDrawable(R.drawable.day_week_select_day_shape));
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN)
+                father.getChildAt(DateUtils.getWeekday() - 1).setBackground(getContext().getResources().getDrawable(R.drawable.day_week_select_day_shape));
+            else
+                father.getChildAt(DateUtils.getWeekday() - 1).setBackgroundDrawable(getContext().getResources().getDrawable(R.drawable.day_week_select_day_shape));
         } else {
             LinearLayout father = findL(R.id.classtable_day_week_father_linear);
-            father.getChildAt(DateUtils.getWeekday() - 1).setBackground(null);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN)
+                father.getChildAt(DateUtils.getWeekday() - 1).setBackground(null);
+            else
+                father.getChildAt(DateUtils.getWeekday() - 1).setBackgroundDrawable(null);
         }
     }
 
@@ -146,7 +154,7 @@ public class ClassPageHolder extends ClasstableBaseHolder implements View.OnClic
         this.mRelaSetting = findR(R.id.classtable_toolbar_setting_rela);
         this.mViewPager = (ViewPager) findViewById(R.id.classtable_class_page_viewpager);
         this.mTVCurrentWeek = findT(R.id.classtable_toolbar_tv);
-        this.mAddButton = (FloatingActionButton) findViewById(R.id.classtable_class_page_float_button);
+        this.mAddButton = (ImageView) findViewById(R.id.classtable_class_page_float_button);
     }
 
     @Override
@@ -216,11 +224,11 @@ public class ClassPageHolder extends ClasstableBaseHolder implements View.OnClic
         if (bottomLayer != null)
             dialogIn(new ShowManyClassesDialog(getContext(), topLayer, bottomLayer, this));
         else
-            holderIn(new ClassDetailViewHolder(getContext(),topLayer.mClassName+"@"+topLayer.mClassAddress));
+            holderIn(new ClassDetailViewHolder(getContext(), topLayer.mClassName + "@" + topLayer.mClassAddress));
     }
 
     @Override
     public void onItemClick(String s) {
-        holderIn(new ClassDetailViewHolder(getContext(),s));
+        holderIn(new ClassDetailViewHolder(getContext(), s));
     }
 }
