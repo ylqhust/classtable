@@ -26,6 +26,7 @@ import com.ylq.library.common.ClickGuard;
 import com.ylq.library.common.DateUtils;
 import com.ylq.library.classtable.widget.ClassBoxLayout;
 
+import java.util.Date;
 import java.util.List;
 
 
@@ -103,16 +104,38 @@ public class ClassPageHolder extends ClasstableBaseHolder implements View.OnClic
 
         if (oneWeekClasses.isContainToday()) {
             LinearLayout father = findL(R.id.classtable_day_week_father_linear);
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN)
-                father.getChildAt(DateUtils.getWeekday() - 1).setBackground(getContext().getResources().getDrawable(R.drawable.day_week_select_day_shape));
-            else
-                father.getChildAt(DateUtils.getWeekday() - 1).setBackgroundDrawable(getContext().getResources().getDrawable(R.drawable.day_week_select_day_shape));
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN){
+                LinearLayout lx = (LinearLayout) father.getChildAt(DateUtils.getWeekday()-1);
+                TextView bottom = (TextView) lx.getChildAt(1);
+                bottom.setTextColor(getContext().getResources().getColor(R.color.classtable_theme_color));
+                bottom.setBackground(getContext().getResources().getDrawable(R.drawable.day_week_select_day_shape));
+               // father.getChildAt(DateUtils.getWeekday() - 1).setBackground(getContext().getResources().getDrawable(R.drawable.day_week_select_day_shape));
+            }
+            else{
+                LinearLayout lx = (LinearLayout) father.getChildAt(DateUtils.getWeekday()-1);
+                TextView bottom = (TextView) lx.getChildAt(1);
+                bottom.setTextColor(getContext().getResources().getColor(R.color.classtable_theme_color));
+                bottom.setBackgroundDrawable(getContext().getResources().getDrawable(R.drawable.day_week_select_day_shape));
+                //father.getChildAt(DateUtils.getWeekday() - 1).setBackgroundDrawable(getContext().getResources().getDrawable(R.drawable.day_week_select_day_shape));
+            }
         } else {
             LinearLayout father = findL(R.id.classtable_day_week_father_linear);
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN)
-                father.getChildAt(DateUtils.getWeekday() - 1).setBackground(null);
-            else
-                father.getChildAt(DateUtils.getWeekday() - 1).setBackgroundDrawable(null);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN){
+                LinearLayout lx = (LinearLayout) father.getChildAt(DateUtils.getWeekday()-1);
+                TextView bottom = (TextView) lx.getChildAt(1);
+                bottom.setTextColor(getContext().getResources().getColor(R.color.classtable_theme_color));
+                bottom.setTextColor(Color.WHITE);
+                bottom.setBackground(null);
+                //father.getChildAt(DateUtils.getWeekday() - 1).setBackground(null);
+            }
+            else{
+                LinearLayout lx = (LinearLayout) father.getChildAt(DateUtils.getWeekday()-1);
+                TextView bottom = (TextView) lx.getChildAt(1);
+                bottom.setTextColor(getContext().getResources().getColor(R.color.classtable_theme_color));
+                bottom.setTextColor(Color.WHITE);
+                bottom.setBackgroundDrawable(null);
+                //father.getChildAt(DateUtils.getWeekday() - 1).setBackgroundDrawable(null);
+            }
         }
     }
 
