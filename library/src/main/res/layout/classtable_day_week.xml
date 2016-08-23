@@ -7,7 +7,7 @@
     <RelativeLayout
         android:layout_width="@dimen/classtable_left_time_width"
         android:layout_height="@dimen/classtable_day_week_height"
-        android:background="@color/day_week_background_color">
+        android:background="@color/classtable_theme_color">
 
         <TextView
             android:id="@+id/classtable_day_week_tv_month"
@@ -15,7 +15,7 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:text="7"
-            android:textColor="@color/left_time_top_text_color"
+            android:textColor="@color/white"
             android:textSize="20sp" />
     </RelativeLayout>
 
@@ -23,7 +23,7 @@
         android:id="@+id/classtable_day_week_father_linear"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/day_week_background_color"
+        android:background="@color/classtable_theme_color"
         android:orientation="horizontal">
 
         <LinearLayout style="@style/day_week_linear_style">

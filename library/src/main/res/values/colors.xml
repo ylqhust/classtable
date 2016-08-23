@@ -21,9 +21,9 @@
     <color name="classtable_setting_page_content_rela_background">#fff3f3f3</color>
     <color name="classtable_setting_page_content_rela_text_color">#37474f</color>
     <color name="classtable_classes_container_pm_background">#d5f9ff</color>
-    <color name="left_time_top_text_color">#4282c4</color>
+    <color name="left_time_top_text_color">#626060</color>
     <color name="left_time_view_color">#b4dbed</color>
-    <color name="left_time_background_color">#d0d8f8ff</color>
+    <color name="left_time_background_color">#f2f2f2</color>
     <color name="day_week_background_color">#d0cdf5ff</color>
     <color name="alpha_white">#00ffffff</color>
     <color name="select_week_item_text_color">#3b95e8</color>

@@ -11,7 +11,7 @@
             style="@style/left_time_top_text_style"/>
         <TextView
             android:text="1"
-            style="@style/left_time_top_text_style"/>
+            style="@style/left_time_bottom_text_style"/>
     </LinearLayout>
     <View style="@style/left_time_view_style"/>
     <LinearLayout style="@style/left_time_linear_style">
@@ -20,7 +20,7 @@
             style="@style/left_time_top_text_style"/>
         <TextView
             android:text="2"
-            style="@style/left_time_top_text_style"/>
+            style="@style/left_time_bottom_text_style"/>
     </LinearLayout>
     <View style="@style/left_time_view_style"/>
     <LinearLayout style="@style/left_time_linear_style">
@@ -29,7 +29,7 @@
             style="@style/left_time_top_text_style"/>
         <TextView
             android:text="3"
-            style="@style/left_time_top_text_style"/>
+            style="@style/left_time_bottom_text_style"/>
     </LinearLayout>
     <View style="@style/left_time_view_style"/>
     <LinearLayout style="@style/left_time_linear_style">
@@ -38,7 +38,7 @@
             style="@style/left_time_top_text_style"/>
         <TextView
             android:text="4"
-            style="@style/left_time_top_text_style"/>
+            style="@style/left_time_bottom_text_style"/>
     </LinearLayout>
     <View style="@style/left_time_view_style"/>
     <LinearLayout style="@style/left_time_linear_style">
@@ -48,7 +48,7 @@
             style="@style/left_time_top_text_style"/>
         <TextView
             android:text="5"
-            style="@style/left_time_top_text_style"/>
+            style="@style/left_time_bottom_text_style"/>
     </LinearLayout>
     <View style="@style/left_time_view_style"/>
     <LinearLayout style="@style/left_time_linear_style">
@@ -58,7 +58,7 @@
             style="@style/left_time_top_text_style"/>
         <TextView
             android:text="6"
-            style="@style/left_time_top_text_style"/>
+            style="@style/left_time_bottom_text_style"/>
     </LinearLayout>
     <View style="@style/left_time_view_style"/>
     <LinearLayout style="@style/left_time_linear_style">
@@ -68,7 +68,7 @@
             style="@style/left_time_top_text_style"/>
         <TextView
             android:text="7"
-            style="@style/left_time_top_text_style"/>
+            style="@style/left_time_bottom_text_style"/>
     </LinearLayout>
     <View style="@style/left_time_view_style"/>
     <LinearLayout style="@style/left_time_linear_style">
@@ -78,7 +78,7 @@
             style="@style/left_time_top_text_style"/>
         <TextView
             android:text="8"
-            style="@style/left_time_top_text_style"/>
+            style="@style/left_time_bottom_text_style"/>
     </LinearLayout>
     <View style="@style/left_time_view_style"/>
     <LinearLayout style="@style/left_time_linear_style">
@@ -88,7 +88,7 @@
             style="@style/left_time_top_text_style"/>
         <TextView
             android:text="9"
-            style="@style/left_time_top_text_style"/>
+            style="@style/left_time_bottom_text_style"/>
     </LinearLayout>
     <View style="@style/left_time_view_style"/>
     <LinearLayout style="@style/left_time_linear_style">
@@ -98,7 +98,7 @@
             style="@style/left_time_top_text_style"/>
         <TextView
             android:text="10"
-            style="@style/left_time_top_text_style"/>
+            style="@style/left_time_bottom_text_style"/>
     </LinearLayout>
     <View style="@style/left_time_view_style"/>
     <LinearLayout style="@style/left_time_linear_style">
@@ -108,7 +108,7 @@
             style="@style/left_time_top_text_style"/>
         <TextView
             android:text="11"
-            style="@style/left_time_top_text_style"/>
+            style="@style/left_time_bottom_text_style"/>
     </LinearLayout>
     <View style="@style/left_time_view_style"/>
     <LinearLayout style="@style/left_time_linear_style">
@@ -118,6 +118,6 @@
             style="@style/left_time_top_text_style"/>
         <TextView
             android:text="12"
-            style="@style/left_time_top_text_style"/>
+            style="@style/left_time_bottom_text_style"/>
     </LinearLayout>
 </LinearLayout>
