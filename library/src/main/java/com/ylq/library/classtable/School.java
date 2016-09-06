@@ -3,9 +3,11 @@ package com.ylq.library.classtable;
 import android.support.annotation.IntRange;
 
 import com.ylq.library.classtable.model.Common;
+import com.ylq.library.classtable.model.OneWeekClasses;
 
+import java.util.ArrayList;
 import java.util.Calendar;
-
+import java.util.List;
 /**
  * Created by ylq on 16/8/17.
  */
@@ -38,6 +40,13 @@ public class School {
     public static final String W22[] = {"2017-01-23", "2017-01-24", "2017-01-25", "2017-01-26", "2017-01-27", "2017-01-28", "2017-01-29"};
     public static final String W23[] = {"2017-01-30", "2017-01-31", "2017-02-01", "2017-02-02", "2017-02-03", "2017-02-04", "2017-02-05"};
     public static final String W24[] = {"2017-02-06", "2017-02-07", "2017-02-08", "2017-02-09", "2017-02-10", "2017-02-11", "2017-02-12"};
+    public static final Common.SEASON[] SCHOOL_SEASON = {
+            Common.SEASON.SUMMER, Common.SEASON.SUMMER, Common.SEASON.SUMMER, Common.SEASON.SUMMER, Common.SEASON.SUMMER,
+            Common.SEASON.WINTER, Common.SEASON.WINTER, Common.SEASON.WINTER, Common.SEASON.WINTER, Common.SEASON.WINTER,
+            Common.SEASON.WINTER, Common.SEASON.WINTER, Common.SEASON.WINTER, Common.SEASON.WINTER, Common.SEASON.WINTER,
+            Common.SEASON.WINTER, Common.SEASON.WINTER, Common.SEASON.WINTER, Common.SEASON.WINTER, Common.SEASON.WINTER,
+            Common.SEASON.WINTER, Common.SEASON.WINTER, Common.SEASON.WINTER, Common.SEASON.WINTER
+    };
 
     public static final String[][] ALLW = {W1, W2, W3, W4, W5, W6, W7, W8, W9, W10, W11, W12, W13, W14, W15, W16, W17, W18, W19, W20, W21, W22, W23, W24};
 
@@ -159,4 +168,24 @@ public class School {
             return Common.SEASON.WINTER;
         return Common.SEASON.SUMMER;
     }
+
+    /**
+     * 从接口获取的学校课表可能有些周没有课，因此会少一些周，必须调整到和学校周一杨
+     */
+    public static  List<OneWeekClasses> getSchoolWeeks() {
+        List<OneWeekClasses> oneES = new ArrayList<>();
+        for(int i=0;i<ALLW.length;i++){
+            OneWeekClasses oneWeek = new OneWeekClasses();
+            oneWeek.setSeason(SCHOOL_SEASON[i]);
+            for(int j=0;j<ALLW[i].length;j++){
+                int[] y_m_d = split(ALLW[i][j]);
+                oneWeek.mMonth[j] = y_m_d[1];
+                oneWeek.mDay[j] = y_m_d[2];
+            }
+            oneES.add(oneWeek);
+        }
+        return oneES;
+    }
+
+
 }

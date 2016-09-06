@@ -5,7 +5,4 @@ package com.ylq.library.classtable;
  */
 public class Global {
     public static String USER_ID = null;
-
-
-
 }

@@ -1,5 +1,6 @@
 package com.ylq.library.classtable.model;
 
+import com.ylq.library.classtable.School;
 import com.ylq.library.classtable.query.Config;
 import com.ylq.library.classtable.query.HubBean;
 
@@ -49,6 +50,9 @@ public class AllClasses implements Cloneable {
             oneWeekClasses.setSeason(Common.isSummer() ? Common.SEASON.SUMMER : Common.SEASON.WINTER);
             allClasses.add(oneWeekClasses);
         }
+        AllClasses ac = new AllClasses();
+        ac.mAllClasses = School.getSchoolWeeks();
+        allClasses.combine(ac);
         return allClasses;
     }
 
@@ -62,6 +66,7 @@ public class AllClasses implements Cloneable {
             return null;
         return mAllClasses.get(i - 1);
     }
+
 
     public JSONObject getOneWeekJSONObject(int index) throws JSONException {
         if ((index - 1) >= mAllClasses.size())

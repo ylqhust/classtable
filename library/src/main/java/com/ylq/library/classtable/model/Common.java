@@ -25,9 +25,9 @@ public class Common {
         if (classColorIndex.containsKey(className))
             return classColorIndex.get(className);
         else {
-            classColorIndex.put(className, colorIndex % 10);
+            classColorIndex.put(className, colorIndex % COLOR_INDEX_MAX);
             colorIndex += 1;
-            return colorIndex - 1;
+            return classColorIndex.get(className);
         }
     }
 
