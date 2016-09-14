@@ -164,9 +164,7 @@ public class School {
      * @return
      */
     public static Common.SEASON querySeason(@IntRange(from = 1,to = 24) int weekth){
-        if(weekth >=5)
-            return Common.SEASON.WINTER;
-        return Common.SEASON.SUMMER;
+        return SCHOOL_SEASON[weekth-1];
     }
 
     /**
