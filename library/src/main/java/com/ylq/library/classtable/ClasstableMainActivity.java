@@ -22,7 +22,7 @@ public class ClasstableMainActivity extends ClasstableBaseActivity {
         //fake();
         if(Store.isNotification(this))
             ClasstableNotification.start(this);
-        if(!Store.isLocalHaveData(this))
+        if(!Store.isLocalHaveData(this) && false)//这里强制false，直接进入课表，虽然课表中什么都没有，但是可以自己添加，自己用用是没有关系的
             holderIn(new WBY_HubLoginPageHolder(this));
         else {
             AllClasses allClasses = Store.getLocalData(this);

@@ -13,39 +13,40 @@ import java.util.List;
  */
 public class School {
 
-    public static final String MIN = "2016-08-29";
-    public static final String MAX = "2017-02-12";
+    public static final String MIN = "2017-02-13";
+    public static final String MAX = "2017-07-30";
 
-    public static final String W1[] = {"2016-08-29", "2016-08-30", "2016-08-31", "2016-09-01", "2016-09-02", "2016-09-03", "2016-09-04"};//第一周的日期
-    public static final String W2[] = {"2016-09-05", "2016-09-06", "2016-09-07", "2016-09-08", "2016-09-09", "2016-09-10", "2016-09-11"};
-    public static final String W3[] = {"2016-09-12", "2016-09-13", "2016-09-14", "2016-09-15", "2016-09-16", "2016-09-17", "2016-09-18"};
-    public static final String W4[] = {"2016-09-19", "2016-09-20", "2016-09-21", "2016-09-22", "2016-09-23", "2016-09-24", "2016-09-25"};
-    public static final String W5[] = {"2016-09-26", "2016-09-27", "2016-09-28", "2016-09-29", "2016-09-30", "2016-10-01", "2016-10-02"};
-    public static final String W6[] = {"2016-10-03", "2016-10-04", "2016-10-05", "2016-10-06", "2016-10-07", "2016-10-08", "2016-10-09"};
-    public static final String W7[] = {"2016-10-10", "2016-10-11", "2016-10-12", "2016-10-13", "2016-10-14", "2016-10-15", "2016-10-16"};
-    public static final String W8[] = {"2016-10-17", "2016-10-18", "2016-10-19", "2016-10-20", "2016-10-21", "2016-10-22", "2016-10-23"};
-    public static final String W9[] = {"2016-10-24", "2016-10-25", "2016-10-26", "2016-10-27", "2016-10-28", "2016-10-29", "2016-10-30"};
-    public static final String W10[] = {"2016-10-31", "2016-11-01", "2016-11-02", "2016-11-03", "2016-11-04", "2016-11-05", "2016-11-06"};
-    public static final String W11[] = {"2016-11-07", "2016-11-08", "2016-11-09", "2016-11-10", "2016-11-11", "2016-11-12", "2016-11-13"};
-    public static final String W12[] = {"2016-11-14", "2016-11-15", "2016-11-16", "2016-11-17", "2016-11-18", "2016-11-19", "2016-11-20"};
-    public static final String W13[] = {"2016-11-21", "2016-11-22", "2016-11-23", "2016-11-24", "2016-11-25", "2016-11-26", "2016-11-27"};
-    public static final String W14[] = {"2016-11-28", "2016-11-29", "2016-11-30", "2016-12-01", "2016-12-02", "2016-12-03", "2016-12-04"};
-    public static final String W15[] = {"2016-12-05", "2016-12-06", "2016-12-07", "2016-12-08", "2016-12-09", "2016-12-10", "2016-12-11"};
-    public static final String W16[] = {"2016-12-12", "2016-12-13", "2016-12-14", "2016-12-15", "2016-12-16", "2016-12-17", "2016-12-18"};
-    public static final String W17[] = {"2016-12-19", "2016-12-20", "2016-12-21", "2016-12-22", "2016-12-23", "2016-12-24", "2016-12-25"};
-    public static final String W18[] = {"2016-12-26", "2016-12-27", "2016-12-28", "2016-12-29", "2016-12-30", "2016-12-31", "2017-01-01"};
-    public static final String W19[] = {"2017-01-02", "2017-01-03", "2017-01-04", "2017-01-05", "2017-01-06", "2017-01-07", "2017-01-08"};
-    public static final String W20[] = {"2017-01-09", "2017-01-10", "2017-01-11", "2017-01-12", "2017-01-13", "2017-01-14", "2017-01-15"};
-    public static final String W21[] = {"2017-01-16", "2017-01-17", "2017-01-18", "2017-01-19", "2017-01-20", "2017-01-21", "2017-01-22"};
-    public static final String W22[] = {"2017-01-23", "2017-01-24", "2017-01-25", "2017-01-26", "2017-01-27", "2017-01-28", "2017-01-29"};
-    public static final String W23[] = {"2017-01-30", "2017-01-31", "2017-02-01", "2017-02-02", "2017-02-03", "2017-02-04", "2017-02-05"};
-    public static final String W24[] = {"2017-02-06", "2017-02-07", "2017-02-08", "2017-02-09", "2017-02-10", "2017-02-11", "2017-02-12"};
+    public static final String W1[] = {"2017-02-13","2017-02-14","2017-02-15","2017-02-16","2017-02-17","2017-02-18","2017-02-19"};
+    public static final String W2[] = {"2017-02-20","2017-02-21","2017-02-22","2017-02-23","2017-02-24","2017-02-25","2017-02-26"};
+    public static final String W3[] = {"2017-02-27","2017-02-28","2017-03-01","2017-03-02","2017-03-03","2017-03-04","2017-03-05"};
+    public static final String W4[] = {"2017-03-06","2017-03-07","2017-03-08","2017-03-09","2017-03-10","2017-03-11","2017-03-12"};
+    public static final String W5[] = {"2017-03-13","2017-03-14","2017-03-15","2017-03-16","2017-03-17","2017-03-18","2017-03-19"};
+    public static final String W6[] = {"2017-03-20","2017-03-21","2017-03-22","2017-03-23","2017-03-24","2017-03-25","2017-03-26"};
+    public static final String W7[] = {"2017-03-27","2017-03-28","2017-03-29","2017-03-30","2017-03-31","2017-04-01","2017-04-02"};
+    public static final String W8[] = {"2017-04-03","2017-04-04","2017-04-05","2017-04-06","2017-04-07","2017-04-08","2017-04-09"};
+    public static final String W9[] = {"2017-04-10","2017-04-11","2017-04-12","2017-04-13","2017-04-14","2017-04-15","2017-04-16"};
+    public static final String W10[] = {"2017-04-17","2017-04-18","2017-04-19","2017-04-20","2017-04-21","2017-04-22","2017-04-23"};
+    public static final String W11[] = {"2017-04-24","2017-04-25","2017-04-26","2017-04-27","2017-04-28","2017-04-29","2017-04-30"};
+    public static final String W12[] = {"2017-05-01","2017-05-02","2017-05-03","2017-05-04","2017-05-05","2017-05-06","2017-05-07"};
+    public static final String W13[] = {"2017-05-08","2017-05-09","2017-05-10","2017-05-11","2017-05-12","2017-05-13","2017-05-14"};
+    public static final String W14[] = {"2017-05-15","2017-05-16","2017-05-17","2017-05-18","2017-05-19","2017-05-20","2017-05-21"};
+    public static final String W15[] = {"2017-05-22","2017-05-23","2017-05-24","2017-05-25","2017-05-26","2017-05-27","2017-05-28"};
+    public static final String W16[] = {"2017-05-29","2017-05-30","2017-05-31","2017-06-01","2017-06-02","2017-06-03","2017-06-04"};
+    public static final String W17[] = {"2017-06-05","2017-06-06","2017-06-07","2017-06-08","2017-06-09","2017-06-10","2017-06-11"};
+    public static final String W18[] = {"2017-06-12","2017-06-13","2017-06-14","2017-06-15","2017-06-16","2017-06-17","2017-06-18"};
+    public static final String W19[] = {"2017-06-19","2017-06-20","2017-06-21","2017-06-22","2017-06-23","2017-06-24","2017-06-25"};
+    public static final String W20[] = {"2017-06-26","2017-06-27","2017-06-28","2017-06-29","2017-06-30","2017-07-01","2017-07-02"};
+    public static final String W21[] = {"2017-07-03","2017-07-04","2017-07-05","2017-07-06","2017-07-07","2017-07-08","2017-07-09"};
+    public static final String W22[] = {"2017-07-10","2017-07-11","2017-07-12","2017-07-13","2017-07-14","2017-07-15","2017-07-16"};
+    public static final String W23[] = {"2017-07-17","2017-07-18","2017-07-19","2017-07-20","2017-07-21","2017-07-22","2017-07-23"};
+    public static final String W24[] = {"2017-07-24","2017-07-25","2017-07-26","2017-07-27","2017-07-28","2017-07-29","2017-07-30"};
     public static final Common.SEASON[] SCHOOL_SEASON = {
+            Common.SEASON.WINTER, Common.SEASON.WINTER, Common.SEASON.WINTER, Common.SEASON.WINTER, Common.SEASON.WINTER,
             Common.SEASON.SUMMER, Common.SEASON.SUMMER, Common.SEASON.SUMMER, Common.SEASON.SUMMER, Common.SEASON.SUMMER,
-            Common.SEASON.WINTER, Common.SEASON.WINTER, Common.SEASON.WINTER, Common.SEASON.WINTER, Common.SEASON.WINTER,
-            Common.SEASON.WINTER, Common.SEASON.WINTER, Common.SEASON.WINTER, Common.SEASON.WINTER, Common.SEASON.WINTER,
-            Common.SEASON.WINTER, Common.SEASON.WINTER, Common.SEASON.WINTER, Common.SEASON.WINTER, Common.SEASON.WINTER,
-            Common.SEASON.WINTER, Common.SEASON.WINTER, Common.SEASON.WINTER, Common.SEASON.WINTER
+            Common.SEASON.SUMMER, Common.SEASON.SUMMER, Common.SEASON.SUMMER, Common.SEASON.SUMMER, Common.SEASON.SUMMER,
+            Common.SEASON.SUMMER, Common.SEASON.SUMMER, Common.SEASON.SUMMER, Common.SEASON.SUMMER, Common.SEASON.SUMMER,
+            Common.SEASON.SUMMER, Common.SEASON.SUMMER, Common.SEASON.SUMMER, Common.SEASON.SUMMER, Common.SEASON.SUMMER,
+            Common.SEASON.SUMMER, Common.SEASON.SUMMER, Common.SEASON.SUMMER, Common.SEASON.SUMMER
     };
 
     public static final String[][] ALLW = {W1, W2, W3, W4, W5, W6, W7, W8, W9, W10, W11, W12, W13, W14, W15, W16, W17, W18, W19, W20, W21, W22, W23, W24};
@@ -168,7 +169,7 @@ public class School {
     }
 
     /**
-     * 从接口获取的学校课表可能有些周没有课，因此会少一些周，必须调整到和学校周一杨
+     * 从接口获取的学校课表可能有些周没有课，因此会少一些周，必须调整到和学校周一样
      */
     public static  List<OneWeekClasses> getSchoolWeeks() {
         List<OneWeekClasses> oneES = new ArrayList<>();
